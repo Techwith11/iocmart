@@ -35,16 +35,14 @@ return [
 
     'channels' => [
         'stack' => [
-            'driver' => 'stack',
-            'channels' => ['daily'],
-            'ignore_exceptions' => false,
-        ],
+			'driver' => 'stack',
+			'channels' => ['single'],
+		],
 
-        'single' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => 'debug',
-        ],
+		'single' => [
+			'driver' => 'errorlog',
+			'level' => 'debug',
+		],
 
         'daily' => [
             'driver' => 'daily',
@@ -60,7 +58,7 @@ return [
             'emoji' => ':boom:',
             'level' => 'critical',
         ],
-
+		
         'papertrail' => [
             'driver' => 'monolog',
             'level' => 'debug',
