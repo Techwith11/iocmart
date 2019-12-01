@@ -3,5 +3,5 @@
 @section('title',config('app.name', 'IOCMart'))
     
 @section('content')
-  <div id="master"></div>
+  <div id="app"></div>
 @endsection
