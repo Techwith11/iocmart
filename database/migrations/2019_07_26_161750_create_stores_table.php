@@ -15,7 +15,7 @@ class CreateStoresTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->json('phone');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

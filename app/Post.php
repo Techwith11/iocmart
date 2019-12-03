@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Observers\PostObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -9,6 +10,12 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Post extends Model
 {
     protected $guarded = [];
+
+	public static function boot(): void
+	{
+		parent::boot();
+		self::observe(PostObserver::class);
+	}
 
     public function store(): BelongsTo
     {

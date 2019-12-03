@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Observers\StoreObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,6 +16,12 @@ class Store extends Model
 		'email_verified_at' => 'datetime',
 		'phone' => 'object',
 	];
+
+	public static function boot(): void
+	{
+		parent::boot();
+		self::observe(StoreObserver::class);
+	}
 
     public function picture(): MorphOne
     {

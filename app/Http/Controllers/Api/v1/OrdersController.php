@@ -27,8 +27,9 @@ class OrdersController extends Controller
 
     public function store(OrderCreateRequest $request): OrdersResource
     {
+		$this->authorize('create', Order::class);
 		$request->merge(['user_id' => auth('api')->id ]);
-		$order =  Order::create($request);
+		$order =  Order::create($request->all());
 		return new OrdersResource($order);
     }
 

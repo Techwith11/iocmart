@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Events\NewSingleImageUploadedEvent;
+use App\Http\Requests\v1\ImageUploadRequest;
 use App\Http\Requests\v1\StoreCreateRequest;
 use App\Http\Requests\v1\StoreUpdateRequest;
 use App\Http\Resources\v1\StoresResource;
@@ -20,46 +21,45 @@ class StoresController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
+		$this->authorize('viewAny', Store::class);
         $stores = Store::latest()->with('posts.category','user', 'picture')->paginate(50);
         return StoresResource::collection($stores);
     }
 
     public function store(StoreCreateRequest $request)
     {
+		$this->authorize('create', Store::class);
 		if(auth('api')->user()->store){
 			return response()->json([ 'errors' => [ 'name' => 'User has an existing store' ] ],422);
 		}
 		$request->merge(['user_id' => auth('api')->user()->id ?: 0 ]);
-        $store = Store::create($request->only(['name','description','email','phone','link','user_id']));
-		if($request->image){
-			$params = [
-				'image' => $request->image,
-				'object' => $store,
-				'path' => 'images/stores/'
-			];
-			event(new NewSingleImageUploadedEvent($params));
-		}
-        return new StoresResource($store);
+        $store = Store::create($request->all());
+		return new StoresResource($store);
     }
 
     public function show(Store $store): StoresResource
     {
+		$this->authorize('view', $store);
         $store = Store::where('id',$store->id)->with('posts.category','user', 'picture')->first();
         return new StoresResource($store);
     }
 
+    public function logo(ImageUploadRequest $request, Store $store): JsonResponse
+	{
+		$this->authorize('update', $store);
+		$params = [
+			'image' => $request->image,
+			'object' => $store,
+			'path' => 'images/stores/'
+		];
+		event(new NewSingleImageUploadedEvent($params));
+		return response()->json(['success' => 'true']);
+	}
+
     public function update(StoreUpdateRequest $request, Store $store): StoresResource
     {
 		$this->authorize('update', $store);
-        $store->update($request->only(['name','description','email','phone','link']));
-		if($request->image){
-			$params = [
-				'image' => $request->image,
-				'object' => $store,
-				'path' => 'images/stores/'
-			];
-			event(new NewSingleImageUploadedEvent($params));
-		}
+        $store->update($request->all());
         return new StoresResource($store);
     }
 

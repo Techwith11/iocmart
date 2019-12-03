@@ -27,7 +27,7 @@ class PicturesController extends Controller
     public function store(PictureCreateRequest $request): PicturesResource
     {
 		$this->authorize('create', Picture::class);
-        $picture = Picture::create($request->only(['filename', 'imageable_type', 'imageable_id']));
+        $picture = Picture::create($request->all());
         return new PicturesResource($picture);
     }
 
@@ -41,7 +41,7 @@ class PicturesController extends Controller
     public function update(PictureUpdateRequest $request, Picture $picture): PicturesResource
     {
 		$this->authorize('update', $picture);
-        $picture->update($request->only(['filename', 'imageable_type', 'imageable_id']));
+        $picture->update($request->all());
         return new PicturesResource($picture);
     }
 

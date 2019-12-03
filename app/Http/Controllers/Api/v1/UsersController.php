@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Events\NewSingleImageUploadedEvent;
+use App\Http\Requests\v1\ImageUploadRequest;
 use App\Http\Requests\v1\UserCreateRequest;
 use App\Http\Requests\v1\UserUpdateRequest;
 use App\User;
@@ -21,6 +22,7 @@ class UsersController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
+		$this->authorize('viewAny', User::class);
         $users = User::latest()->with('store.posts.category', 'picture')->paginate(50);
         return UsersResource::collection($users);
     }
@@ -28,46 +30,35 @@ class UsersController extends Controller
     public function store(UserCreateRequest $request): UsersResource
     {
     	$this->authorize('create', User::class);
-        $request->merge([
-            'password' => Hash::make($request['password']),
-            'role' => $request['role'] ?: 0
-        ]);
-        $user = User::create($request->only(['name','email','password','phone','role']));
-		if($request->image){
-			$params = [
-				'image' => $request->image,
-				'object' => $user,
-				'path' => 'images/users/'
-			];
-			event(new NewSingleImageUploadedEvent($params));
-		}
-        return new UsersResource($user);
+        $request->merge([ 'role' => $request['role'] ?: 0 ]);
+        $user = User::create($request->all());
+		return new UsersResource($user);
     }
 
     public function show(User $user): UsersResource
     {
+		$this->authorize('view', $user);
     	$user = User::where('id',$user->id)->with('store.posts.category', 'picture')->first();
         return new UsersResource($user);
     }
 
+	public function profile(ImageUploadRequest $request, User $user): JsonResponse
+	{
+		$this->authorize('update', $user);
+		$params = [
+			'image' => $request->image,
+			'object' => $user,
+			'path' => 'images/users/'
+		];
+		event(new NewSingleImageUploadedEvent($params));
+		return response()->json(['success' => 'true']);
+	}
+
     public function update(UserUpdateRequest $request, User $user): UsersResource
     {
 		$this->authorize('update', $user);
-        $request->merge([
-            'role' => $request['role'] ?: $user->role,
-        ]);
-        $user->update($request->only(['name','email','phone','role']));
-        if($request->password){
-            $user->update(['password' => Hash::make($request['password'])]);
-        }
-		if($request->image){
-			$params = [
-				'image' => $request->image,
-				'object' => $user,
-				'path' => 'images/users/'
-			];
-			event(new NewSingleImageUploadedEvent($params));
-		}
+        $request->merge([ 'role' => $request['role'] ?: $user->role ]);
+        $user->update($request->all());
         return new UsersResource($user);
     }
 

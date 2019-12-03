@@ -20,12 +20,14 @@ class PostsController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
+		$this->authorize('viewAny', Post::class);
         $posts = Post::latest()->with('category', 'store.user', 'pictures')->paginate(50);
         return PostsResource::collection($posts);
     }
 
     public function store(PostCreateRequest $request)
     {
+		$this->authorize('create', Post::class);
 		if(!auth('api')->user()->store){
 			return response()->json([ 'errors' => [ 'name' => 'User doesn\'t have an existing store' ] ],422);
 		}
@@ -44,6 +46,7 @@ class PostsController extends Controller
 
     public function show(Post $post): PostsResource
     {
+		$this->authorize('view', $post);
         $post = Post::where('id',$post->id)->with('category', 'store.user', 'pictures')->first();
         return new PostsResource($post);
     }

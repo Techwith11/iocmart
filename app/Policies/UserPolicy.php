@@ -21,26 +21,26 @@ class UserPolicy
 
     public function create(User $user): bool
     {
-		return $user->role === 1;
+		return true;
     }
 
     public function update(User $user, User $model): bool
     {
-		return $user->id === $model->id || $user->role === 1;
+		return $user->id === $model->id || $user->isAdmin();
     }
 
     public function delete(User $user, User $model): bool
     {
-		return $user->id === $model->id || $user->role === 1;
+		return $user->id === $model->id || $user->isAdmin();
     }
 
     public function restore(User $user, User $model): bool
     {
-		return $user->id === $model->id || $user->role === 1;
+		return $user->id === $model->id || $user->isAdmin();
 	}
 
     public function forceDelete(User $user, User $model): bool
     {
-		return $user->id === $model->id || $user->role === 1;
+		return $user->id === $model->id || $user->isAdmin();
 	}
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Observers\CategoryObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,6 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     protected $guarded = [];
+
+	public static function boot(): void
+	{
+		parent::boot();
+		self::observe(CategoryObserver::class);
+	}
 
     public function posts(): HasMany
     {

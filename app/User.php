@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Notifications\Notifiable;
@@ -22,6 +23,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
 		'phone' => 'object',
     ];
+
+    public static function boot(): void
+	{
+		parent::boot();
+		self::observe(UserObserver::class);
+	}
+
+	public function setPasswordAttribute($password): void
+	{
+		$this->attributes['password'] = bcrypt($password);
+	}
+
+	public function isAdmin(): bool
+	{
+		return $this->role === '1';
+	}
 
     public function picture(): MorphOne
     {

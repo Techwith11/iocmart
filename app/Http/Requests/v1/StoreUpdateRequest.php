@@ -21,7 +21,6 @@ class StoreUpdateRequest extends FormRequest
 			'phone.phone' => 'required|phone',
 			'phone.phone_country' => 'required_with:phone.phone',
 			'link' => 'sometimes|url',
-			'image' => 'sometimes|nullable|string'
         ];
     }
 }
