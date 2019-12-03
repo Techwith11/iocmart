@@ -17,19 +17,17 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['store','update','destroy']);
+        $this->middleware('auth:api')->only(['update', 'profile','destroy']);
     }
 
     public function index(): AnonymousResourceCollection
     {
-		$this->authorize('viewAny', User::class);
         $users = User::latest()->with('store.posts.category', 'picture')->paginate(50);
         return UsersResource::collection($users);
     }
 
     public function store(UserCreateRequest $request): UsersResource
     {
-    	$this->authorize('create', User::class);
         $request->merge([ 'role' => $request['role'] ?: 0 ]);
         $user = User::create($request->all());
 		return new UsersResource($user);
@@ -37,7 +35,6 @@ class UsersController extends Controller
 
     public function show(User $user): UsersResource
     {
-		$this->authorize('view', $user);
     	$user = User::where('id',$user->id)->with('store.posts.category', 'picture')->first();
         return new UsersResource($user);
     }

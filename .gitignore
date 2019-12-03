@@ -4,7 +4,6 @@
 /public/storage
 /storage/*.key
 /vendor
-/public/.well-known/
 /public/fonts/
 /public/images/users/
 /public/images/stores/

@@ -19,7 +19,6 @@ class CategoriesController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-		$this->authorize('viewAny', Category::class);
         $categories = Category::latest()->with('posts.store.user','parent','subs')->paginate(50);
         return CategoriesResource::collection($categories);
     }
@@ -33,7 +32,6 @@ class CategoriesController extends Controller
 
     public function show(Category $category): CategoriesResource
     {
-		$this->authorize('view', $category);
         $category = Category::where('id',$category->id)->with('posts.store.user','parent','subs')->first();
         return new CategoriesResource($category);
     }

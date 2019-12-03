@@ -16,12 +16,11 @@ class StoresController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['store','update','destroy']);
+        $this->middleware('auth:api')->only(['store','update', 'logo', 'destroy']);
     }
 
     public function index(): AnonymousResourceCollection
-    {
-		$this->authorize('viewAny', Store::class);
+	{
         $stores = Store::latest()->with('posts.category','user', 'picture')->paginate(50);
         return StoresResource::collection($stores);
     }
@@ -39,7 +38,6 @@ class StoresController extends Controller
 
     public function show(Store $store): StoresResource
     {
-		$this->authorize('view', $store);
         $store = Store::where('id',$store->id)->with('posts.category','user', 'picture')->first();
         return new StoresResource($store);
     }
