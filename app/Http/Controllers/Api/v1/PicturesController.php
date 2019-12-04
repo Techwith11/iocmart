@@ -49,8 +49,8 @@ class PicturesController extends Controller
     {
 		$this->authorize('delete', $picture);
         if($picture->delete()){
-			return response()->json(['success' => 'true']);
+			return response()->json(['data' => 'true']);
 		}
-		return response()->json(['error' => 'Error deleting picture'],422);
+		return response()->json(['data' => 'Error deleting picture'],422);
     }
 }

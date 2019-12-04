@@ -45,7 +45,6 @@ class Kernel extends HttpKernel
         ],
 
 		'admin' => [
-			'auth.basic',
 			\App\Http\Middleware\IsAdmin::class,
 		]
     ];

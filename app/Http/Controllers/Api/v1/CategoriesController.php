@@ -47,8 +47,8 @@ class CategoriesController extends Controller
     {
         $this->authorize('delete', $category);
 		if($category->delete()){
-            return response()->json(['success' => 'true']);
+            return response()->json(['data' => 'true']);
         }
-        return response()->json(['error' => 'Error deleting category'],422);
+        return response()->json(['data' => 'Error deleting category'],422);
     }
 }

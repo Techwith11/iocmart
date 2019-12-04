@@ -68,8 +68,8 @@ class PostsController extends Controller
     {
         $this->authorize('delete', $post);
 		if($post->delete()){
-            return response()->json(['success' => 'true']);
+            return response()->json(['data' => 'true']);
         }
-        return response()->json(['error' => 'Error deleting post'],422);
+        return response()->json(['data' => 'Error deleting post'],422);
     }
 }

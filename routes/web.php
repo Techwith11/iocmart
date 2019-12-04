@@ -14,5 +14,5 @@ Auth::routes();
 Route::match(
 	['HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 	'/{path}', static function(){
-		throw new ModelNotFoundException('');
+		throw new ModelNotFoundException("Route doesn't exist");
 })->where('path','([A-z\d\/_.\\s]+)?');

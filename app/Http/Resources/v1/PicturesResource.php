@@ -1,4 +1,4 @@
-<?php /** @noinspection ALL */
+<?php
 
 namespace App\Http\Resources\v1;
 
@@ -12,6 +12,7 @@ class PicturesResource extends JsonResource
             'id' => $this->id,
             'filename' => $this->filename,
             'imageable' => $this->imageable,
+            'imageable_type' => $this->imageable_type,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
         ];

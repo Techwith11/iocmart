@@ -28,8 +28,7 @@ class UsersController extends Controller
 
     public function store(UserCreateRequest $request): UsersResource
     {
-        $request->merge([ 'role' => $request['role'] ?: 0 ]);
-        $user = User::create($request->all());
+		$user = User::create($request->except(['password_confirmation']));
 		return new UsersResource($user);
     }
 
@@ -48,13 +47,12 @@ class UsersController extends Controller
 			'path' => 'images/users/'
 		];
 		event(new NewSingleImageUploadedEvent($params));
-		return response()->json(['success' => 'true']);
+		return response()->json(['data' => 'true']);
 	}
 
     public function update(UserUpdateRequest $request, User $user): UsersResource
     {
 		$this->authorize('update', $user);
-        $request->merge([ 'role' => $request['role'] ?: $user->role ]);
         $user->update($request->all());
         return new UsersResource($user);
     }
@@ -63,8 +61,8 @@ class UsersController extends Controller
     {
         $this->authorize('delete', $user);
 		if($user->delete()){
-            return response()->json(['success' => 'true']);
+            return response()->json(['data' => 'true']);
         }
-        return response()->json(['error' => 'Error deleting user'],422);
+        return response()->json(['data' => 'Error deleting user'],422);
     }
 }

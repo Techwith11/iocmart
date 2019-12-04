@@ -51,7 +51,7 @@ class StoresController extends Controller
 			'path' => 'images/stores/'
 		];
 		event(new NewSingleImageUploadedEvent($params));
-		return response()->json(['success' => 'true']);
+		return response()->json(['data' => 'true']);
 	}
 
     public function update(StoreUpdateRequest $request, Store $store): StoresResource
@@ -65,8 +65,8 @@ class StoresController extends Controller
     {
         $this->authorize('delete', $store);
         if($store->delete()){
-            return response()->json(['success' => 'true']);
+            return response()->json(['data' => 'true']);
         }
-        return response()->json(['error' => 'Error deleting store'],422);
+        return response()->json(['data' => 'Error deleting store'],422);
     }
 }

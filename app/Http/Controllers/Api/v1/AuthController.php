@@ -16,7 +16,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['profile', 'logout']);
+        $this->middleware('auth:api')->only(['index', 'password']);
     }
 
     public function index(): UsersResource
@@ -28,27 +28,21 @@ class AuthController extends Controller
     public function password(UserPasswordUpdateRequest $request): JsonResponse
 	{
 		auth('api')->user()->update(['password' => $request['password']]);
-		return response()->json(['success' => 'true']);
+		return response()->json(['data' => 'true']);
 	}
 
     public function login(UserLoginRequest $request): JsonResponse
     {
         if(auth()->attempt(['email' => $request['email'], 'password' => $request['password']])){
-            return response()->json([ 'data' => auth()->user()->passportToken ]);
+            return response()->json([ 'data' => auth()->user()->passport_token ]);
         }
         return response()->json(['password' => trans('auth.failed')],422);
     }
 
     public function register(UserCreateRequest $request): JsonResponse
     {
-        $user = User::create($request->all());
+        $user = User::create($request->except(['password_confirmation']));
         auth()->login($user);
-        return response()->json([ 'data' => $user->passportToken ]);
+        return response()->json([ 'data' => $user->passport_token ]);
     }
-
-    public function logout(): JsonResponse
-	{
-		auth()->logout();
-		return response()->json(['success' => 'true']);
-	}
 }

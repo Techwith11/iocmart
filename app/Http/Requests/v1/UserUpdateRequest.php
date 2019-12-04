@@ -18,8 +18,7 @@ class UserUpdateRequest extends FormRequest
 			'name' => 'required|string|min:3',
 			'email' => 'required|email|unique:users,email,'.$user->id,
 			'phone.phone' => 'required|phone',
-			'phone.phone_country' => 'required_with:phone.phone',
-			'role' => 'sometimes|nullable|numeric'
+			'phone.phone_country' => 'required_with:phone.phone'
         ];
     }
 }
