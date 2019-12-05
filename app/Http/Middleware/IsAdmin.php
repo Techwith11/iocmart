@@ -26,12 +26,12 @@ class IsAdmin
     	if($this->isAnOpenRoute($request->getPathInfo())){
     		return $next($request);
 		}
-    	if(auth()->user()){
-    		if(auth()->user()->isAdmin()){
+    	if(auth('api')->user()){
+    		if(auth('api')->user()->isAdmin()){
 				return $next($request);
 			}
 			throw new AuthorizationException('Unauthorized access');
 		}
-    	throw new AuthenticationException('Login to continue');
+    	throw new AuthenticationException('Login to continue', [], 'login');
     }
 }

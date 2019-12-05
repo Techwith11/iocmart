@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/{path}', static function(){
@@ -9,6 +8,8 @@ Route::get('/{path}', static function(){
 	return view('admin');
 })->where('path','([A-z\d\/_.\\s]+)?');
 
-Route::any('/{path}', static function(){
+Route::match(
+	['HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+	'/{path}', static function(){
 	throw new ModelNotFoundException("Route doesn't exist");
-})->where('path',"([A-z\d\/_.\\s]+)?");
+})->where('path','([A-z\d\/_.\\s]+)?');
