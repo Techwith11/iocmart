@@ -9,8 +9,6 @@ Route::get('/{path}', static function(){
     return view('welcome');
 })->where('path','([A-z\d\/_.\\s]+)?');
 
-Auth::routes();
-
 Route::match(
 	['HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 	'/{path}', static function(){
