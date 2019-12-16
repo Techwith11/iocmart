@@ -14,7 +14,7 @@ class CategoriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index', 'show']);
+        $this->middleware('auth:api')->only(['store', 'update','destroy']);
     }
 
     public function index(): AnonymousResourceCollection
@@ -22,6 +22,11 @@ class CategoriesController extends Controller
         $categories = Category::latest()->with('posts.store.user','parent','subs')->paginate(50);
         return CategoriesResource::collection($categories);
     }
+
+	public function query()
+	{
+		return Category::queryBuilder();
+	}
 
     public function store(CategoryCreateRequest $request): CategoriesResource
     {

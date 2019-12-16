@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/{path}', static function(){
 	// TODO: Replace welcome view with home view when frontend is implemented
-    return view('welcome');
+    return view('home');
 })->where('path','([A-z\d\/_.\\s]+)?');
 
 Route::match(

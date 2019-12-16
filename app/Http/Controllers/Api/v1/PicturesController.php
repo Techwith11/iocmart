@@ -24,6 +24,11 @@ class PicturesController extends Controller
         return PicturesResource::collection($pictures);
     }
 
+	public function query()
+	{
+		return Picture::queryBuilder();
+	}
+
     public function store(PictureCreateRequest $request): PicturesResource
     {
 		$this->authorize('create', Picture::class);

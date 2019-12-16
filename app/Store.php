@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Filters\RegisterFilters;
 use App\Observers\StoreObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Store extends Model
 {
+	use RegisterFilters;
+
     protected $guarded = [];
 
 	protected $casts = [

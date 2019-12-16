@@ -1,16 +1,20 @@
 <template>
     <div>
-		<example-component />
+		<app-nav-bar />
+		<router-view />
+		<app-footer />
     </div>
 </template>
 
 <script>
-	import ExampleComponent from "./components/ExampleComponent";
+	import Header from './components/app/Header';
+	import Footer from './components/app/Footer';
 
 	export default {
 		name: "App",
 		components: {
-			"example-component": ExampleComponent,
+		    'app-nav-bar': Header,
+			'app-footer': Footer,
 		}
 	};
 </script>

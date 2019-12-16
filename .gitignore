@@ -8,6 +8,9 @@
 /public/images/stores/
 /public/images/posts/
 /database/database.sqlite
+/storage/app/
+/storage/framework/
+/storage/logs/
 .env
 .env.backup
 composer.lock

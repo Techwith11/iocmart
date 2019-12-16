@@ -26,6 +26,11 @@ class UsersController extends Controller
         return UsersResource::collection($users);
     }
 
+	public function query()
+	{
+		return User::queryBuilder();
+	}
+
     public function store(UserCreateRequest $request): UsersResource
     {
 		$user = User::create($request->except(['password_confirmation']));

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Filters\RegisterFilters;
 use App\Observers\CategoryObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
+	use RegisterFilters;
+
     protected $guarded = [];
 
 	public static function boot(): void

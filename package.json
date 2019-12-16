@@ -7,7 +7,7 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
         "axios": "^0.19.0",
@@ -28,12 +28,10 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.9.0",
-        "admin-lte": "^3.0.0-beta.1",
         "bootstrap-vue": "^2.0.0-rc.26",
         "chalk": "^2.4.2",
         "echo": "^0.1.9",
         "eslint": "^6.0.1",
-        "font-awesome": "^4.7.0",
         "laravel-vue-pagination": "^2.3.0",
         "material-design-icons-iconfont": "^5.0.1",
         "moment": "^2.22.2",
@@ -48,7 +46,6 @@
         "vue-phone-number-input": "^0.2.0",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.0.7",
-        "vue-session": "^1.0.0",
         "vue-simple-spinner": "^1.2.8",
         "vue-smart-pagination": "^2.0.9",
         "vue-spinner": "^1.0.3",

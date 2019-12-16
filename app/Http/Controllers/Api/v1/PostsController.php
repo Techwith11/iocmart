@@ -8,6 +8,7 @@ use App\Http\Requests\v1\PostUpdateRequest;
 use App\Post;
 use App\Http\Resources\v1\PostsResource;
 use App\Http\Controllers\Controller;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -24,11 +25,16 @@ class PostsController extends Controller
         return PostsResource::collection($posts);
     }
 
+    public function query()
+	{
+		return Post::queryBuilder();
+	}
+
     public function store(PostCreateRequest $request)
     {
 		$this->authorize('create', Post::class);
 		if(!auth('api')->user()->store){
-			return response()->json([ 'errors' => [ 'name' => 'User doesn\'t have an existing store' ] ],422);
+			return response()->json([ 'errors' => [ 'name' => 'User does not have an existing store' ] ],422);
 		}
         $request->merge(['store_id' => auth('api')->user()->store->id ?: 0 ]);
         $post =  Post::create($request->only(['name','description','category_id','price','store_id']));

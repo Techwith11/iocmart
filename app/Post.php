@@ -2,14 +2,20 @@
 
 namespace App;
 
+use App\Http\Filters\RegisterFilters;
 use App\Observers\PostObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Post extends Model
 {
-    protected $guarded = [];
+	use RegisterFilters;
+
+	protected $guarded = [];
+
+	protected $appends = ['is_ordered_by'];
 
 	public static function boot(): void
 	{
@@ -17,7 +23,7 @@ class Post extends Model
 		self::observe(PostObserver::class);
 	}
 
-    public function store(): BelongsTo
+	public function store(): BelongsTo
     {
         return $this->belongsTo(Store::class);
     }
@@ -31,4 +37,14 @@ class Post extends Model
     {
         return $this->morphMany(Picture::class,'imageable');
     }
+
+    public function orders(): HasMany
+	{
+		return $this->hasMany(Order::class);
+	}
+
+	public function getIsOrderedByAttribute(): bool
+	{
+		return Order::where('post_id', $this->id)->where('user_id', auth('api')->id() ?: 0)->count() > 0;
+	}
 }

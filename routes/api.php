@@ -11,6 +11,13 @@ Route::post('/register', 'Api\\v1\\AuthController@register');
 Route::post('users/{id}/profile', 'Api\\v1\\UsersController@profile');
 Route::post('stores/{id}/logo', 'Api\\v1\\StoresController@logo');
 
+Route::get('categories/query', 'Api\\v1\\CategoriesController@query');
+Route::get('orders/query', 'Api\\v1\\OrdersController@query');
+Route::get('pictures/query', 'Api\\v1\\PicturesController@query');
+Route::get('posts/query', 'Api\\v1\\PostsController@query');
+Route::get('stores/query', 'Api\\v1\\StoresController@query');
+Route::get('users/query', 'Api\\v1\\UsersController@query');
+
 Route::apiResources([
 	'categories' => 'Api\\v1\\CategoriesController',
 	'orders' => 'Api\\v1\\OrdersController',

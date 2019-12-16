@@ -25,6 +25,11 @@ class OrdersController extends Controller
 		return OrdersResource::collection($orders);
     }
 
+	public function query()
+	{
+		return Order::queryBuilder();
+	}
+
     public function store(OrderCreateRequest $request): OrdersResource
     {
 		$this->authorize('create', Order::class);

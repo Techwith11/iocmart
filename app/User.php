@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Http\Filters\RegisterFilters;
 use App\Observers\UserObserver;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable,HasApiTokens;
+    use Notifiable,HasApiTokens,RegisterFilters;
 
     protected $guarded = [];
 
@@ -49,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Store::class);
     }
+
+	public function orders(): HasMany
+	{
+		return $this->hasMany(Order::class);
+	}
 }

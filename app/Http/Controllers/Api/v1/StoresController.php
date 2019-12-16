@@ -6,7 +6,9 @@ use App\Events\NewSingleImageUploadedEvent;
 use App\Http\Requests\v1\ImageUploadRequest;
 use App\Http\Requests\v1\StoreCreateRequest;
 use App\Http\Requests\v1\StoreUpdateRequest;
+use App\Http\Resources\v1\PostsResource;
 use App\Http\Resources\v1\StoresResource;
+use App\Post;
 use App\Store;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
@@ -24,6 +26,11 @@ class StoresController extends Controller
         $stores = Store::latest()->with('posts.category','user', 'picture')->paginate(50);
         return StoresResource::collection($stores);
     }
+
+	public function query()
+	{
+		return Store::queryBuilder();
+	}
 
     public function store(StoreCreateRequest $request)
     {
