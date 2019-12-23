@@ -18,9 +18,9 @@ class PostObserver
 
     public function deleting(Post $post): void
     {
-        foreach ($post->pictures as $picture) {
+        $post->pictures->each(static function ($picture) {
             $picture->delete();
-        }
+        });
     }
 
     public function restored(Post $post): void

@@ -45,6 +45,6 @@ class Post extends Model
 
 	public function getIsOrderedByAttribute(): bool
 	{
-		return Order::where('post_id', $this->id)->where('user_id', auth('api')->id() ?: 0)->count() > 0;
+		return Order::myOrders()->where('post_id', $this->id)->count() > 0;
 	}
 }

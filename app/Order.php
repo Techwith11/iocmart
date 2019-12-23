@@ -20,13 +20,14 @@ class Order extends Model
 		self::observe(OrderObserver::class);
 	}
 
-	public function scopeMyOrders($query){
-    	return $query->where('id', auth('api')->id);
+	public static function scopeMyOrders($query)
+	{
+		return $query->where('cart_id',auth('api')->user()->currentCart()->id);
 	}
 
-	public function user(): HasOne
+	public function cart(): HasOne
 	{
-		return $this->hasOne(User::class);
+		return $this->hasOne(Cart::class);
 	}
 
 	public function post(): HasOne

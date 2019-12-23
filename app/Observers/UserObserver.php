@@ -29,8 +29,13 @@ class UserObserver
         }
 
         if($user->tokens){
-            $user->tokens->each(function($token){
+            $user->tokens->each(static function($token){
                 $token->delete();
+            });
+        }
+        if($user->carts){
+            $user->carts->each(static function($cart){
+                $cart->delete();
             });
         }
 

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\Filters\RegisterFilters;
 use App\Observers\UserObserver;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -52,8 +53,13 @@ class User extends Authenticatable
         return $this->hasOne(Store::class);
     }
 
-	public function orders(): HasMany
+	public function carts(): HasMany
 	{
-		return $this->hasMany(Order::class);
+		return $this->hasMany(Cart::class);
+	}
+
+	public function currentCart(): Model
+	{
+		return $this->carts()->notCheckedOut()->latest()->first() ?: $this->carts()->create([]);
 	}
 }

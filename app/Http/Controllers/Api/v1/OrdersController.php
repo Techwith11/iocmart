@@ -21,7 +21,7 @@ class OrdersController extends Controller
     public function index(): AnonymousResourceCollection
     {
 		$this->authorize('viewAny', Order::class);
-		$orders = Order::myOrders()->with('post', 'user')->paginate(50);
+		$orders = Order::with('post', 'cart')->paginate(env('API_QUERY_LIMIT',50));
 		return OrdersResource::collection($orders);
     }
 
@@ -33,7 +33,7 @@ class OrdersController extends Controller
     public function store(OrderCreateRequest $request): OrdersResource
     {
 		$this->authorize('create', Order::class);
-		$request->merge(['user_id' => auth('api')->id ]);
+		$request->merge(['cart_id' => auth('api')->user()->currentCart()->id ]);
 		$order =  Order::create($request->all());
 		return new OrdersResource($order);
     }

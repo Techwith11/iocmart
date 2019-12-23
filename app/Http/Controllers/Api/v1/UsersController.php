@@ -22,7 +22,7 @@ class UsersController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-        $users = User::latest()->with('store.posts.category', 'picture')->paginate(50);
+        $users = User::latest()->with('store', 'picture')->paginate(env('API_QUERY_LIMIT',50));
         return UsersResource::collection($users);
     }
 
@@ -39,7 +39,7 @@ class UsersController extends Controller
 
     public function show(User $user): UsersResource
     {
-    	$user = User::where('id',$user->id)->with('store.posts.category', 'picture')->first();
+    	$user = User::where('id',$user->id)->with('store', 'picture')->first();
         return new UsersResource($user);
     }
 

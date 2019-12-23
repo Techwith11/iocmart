@@ -6,10 +6,10 @@ use Illuminate\Support\Str;
 
 class With extends Base
 {
-
 	protected function applyFilter($builder)
 	{
-		$relations = explode(',',request($this->name()));
+		$requests = explode(',',request($this->name()));
+		$relations = $this->verifyRequestFields($requests);
 		return $builder->with(...$relations);
 	}
 }

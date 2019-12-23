@@ -15,7 +15,6 @@ class PictureObserver
     {
         if($picture->isDirty('filename')){
             $filename = $picture->getOriginal('filename');
-
             if(file_exists(public_path($filename))){
                 @unlink(public_path($filename));
             }
@@ -30,7 +29,6 @@ class PictureObserver
     public function deleting(Picture $picture): void
     {
         $filename = $picture->filename;
-        
         if(file_exists(public_path($filename))){
             @unlink(public_path($filename));
         }
@@ -40,7 +38,7 @@ class PictureObserver
     {
         //
     }
-    
+
     public function forceDeleted(Picture $picture): void
     {
         //

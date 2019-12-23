@@ -21,7 +21,7 @@ class PostsController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-        $posts = Post::latest()->with('category', 'store.user', 'pictures')->paginate(50);
+        $posts = Post::latest()->with('category', 'store.user', 'pictures')->paginate(env('API_QUERY_LIMIT',50));
         return PostsResource::collection($posts);
     }
 
@@ -34,7 +34,7 @@ class PostsController extends Controller
     {
 		$this->authorize('create', Post::class);
 		if(!auth('api')->user()->store){
-			return response()->json([ 'errors' => [ 'name' => 'User does not have an existing store' ] ],422);
+			return response()->json([ 'errors' => [ 'name' => 'User does not have an existing store' ] ],400);
 		}
         $request->merge(['store_id' => auth('api')->user()->store->id ?: 0 ]);
         $post =  Post::create($request->only(['name','description','category_id','price','store_id']));

@@ -23,7 +23,7 @@ class StoresController extends Controller
 
     public function index(): AnonymousResourceCollection
 	{
-        $stores = Store::latest()->with('posts.category','user', 'picture')->paginate(50);
+        $stores = Store::latest()->with('user', 'picture')->paginate(env('API_QUERY_LIMIT',50));
         return StoresResource::collection($stores);
     }
 
@@ -36,7 +36,7 @@ class StoresController extends Controller
     {
 		$this->authorize('create', Store::class);
 		if(auth('api')->user()->store){
-			return response()->json([ 'errors' => [ 'name' => 'User has an existing store' ] ],422);
+			return response()->json([ 'errors' => [ 'name' => 'User has an existing store' ] ],400);
 		}
 		$request->merge(['user_id' => auth('api')->user()->id ?: 0 ]);
         $store = Store::create($request->all());
@@ -45,7 +45,7 @@ class StoresController extends Controller
 
     public function show(Store $store): StoresResource
     {
-        $store = Store::where('id',$store->id)->with('posts.category','user', 'picture')->first();
+        $store = Store::where('id',$store->id)->with('user', 'picture')->first();
         return new StoresResource($store);
     }
 

@@ -20,7 +20,7 @@ class PicturesController extends Controller
     public function index(): AnonymousResourceCollection
     {
 		$this->authorize('viewAny', Picture::class);
-        $pictures = Picture::latest()->with('imageable')->paginate(50);
+        $pictures = Picture::latest()->with('imageable')->paginate(env('API_QUERY_LIMIT',50));
         return PicturesResource::collection($pictures);
     }
 

@@ -19,7 +19,7 @@ class CategoriesController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-        $categories = Category::latest()->with('posts.store.user','parent','subs')->paginate(50);
+        $categories = Category::latest()->with('parent','subs')->paginate(env('API_QUERY_LIMIT',50));
         return CategoriesResource::collection($categories);
     }
 
