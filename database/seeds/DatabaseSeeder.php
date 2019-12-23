@@ -1,5 +1,6 @@
 <?php
 
+use App\Cart;
 use App\Category;
 use App\Order;
 use App\Picture;
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         	Image::canvas(300,300)->save(public_path('images/posts/').$name);
             $post->pictures()->create([ 'filename' => 'images/posts/'.$name ]);
         });
+        factory(Cart::class,10)->create();
 		factory(Order::class,20)->create();
         factory(Category::class,5)->create();
     }

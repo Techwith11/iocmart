@@ -28,7 +28,7 @@ class AuthController extends Controller
 
     public function docs()
 	{
-		return response()->file(public_path('documentation\\api.html'));
+		return response()->file(public_path('documentation/api.html'));
 	}
 
     public function password(UserPasswordUpdateRequest $request): JsonResponse

@@ -22,7 +22,8 @@ class Order extends Model
 
 	public static function scopeMyOrders($query)
 	{
-		return $query->where('cart_id',auth('api')->user()->currentCart()->id);
+		return $query->where('cart_id',
+			auth('api')->user() ? auth('api')->user()->currentCart()->id : 0);
 	}
 
 	public function cart(): HasOne
