@@ -15,20 +15,14 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class PostsController extends Controller
 {
     public function __construct()
-    {
-        $this->middleware('auth:api')->only(['store','update','destroy']);
-    }
-
-    public function index(): AnonymousResourceCollection
-    {
-        $posts = Post::latest()->with('category', 'store.user', 'pictures')->paginate(env('API_QUERY_LIMIT',50));
-        return PostsResource::collection($posts);
-    }
-
-    public function query()
 	{
-		return Post::queryBuilder();
+		$this->middleware('auth:api')->except(['index', 'show']);
 	}
+
+    public function index()
+    {
+		return Post::queryBuilder();
+    }
 
     public function store(PostCreateRequest $request)
     {

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Cart;
 use App\Category;
 use App\Order;
 use App\Picture;
+use App\Policies\CartPolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\OrderPolicy;
 use App\Policies\PicturePolicy;
@@ -25,7 +27,8 @@ class AuthServiceProvider extends ServiceProvider
 		Store::class => StorePolicy::class,
 		Category::class => CategoryPolicy::class,
 		Picture::class => PicturePolicy::class,
-		Order::class => OrderPolicy::class
+		Order::class => OrderPolicy::class,
+		Cart::class => CartPolicy::class
     ];
 
     public function boot(): Void

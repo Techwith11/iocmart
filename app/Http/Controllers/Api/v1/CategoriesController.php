@@ -14,19 +14,13 @@ class CategoriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['store', 'update','destroy']);
+        $this->middleware('auth:api')->except(['index', 'show']);
     }
 
-    public function index(): AnonymousResourceCollection
+    public function index()
     {
-        $categories = Category::latest()->with('parent','subs')->paginate(env('API_QUERY_LIMIT',50));
-        return CategoriesResource::collection($categories);
-    }
-
-	public function query()
-	{
 		return Category::queryBuilder();
-	}
+    }
 
     public function store(CategoryCreateRequest $request): CategoriesResource
     {

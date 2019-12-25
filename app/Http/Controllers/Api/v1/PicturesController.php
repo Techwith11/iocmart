@@ -14,20 +14,13 @@ class PicturesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['query']);
+        $this->middleware('auth:api')->except(['index', 'show']);
     }
 
-    public function index(): AnonymousResourceCollection
+    public function index()
     {
-		$this->authorize('viewAny', Picture::class);
-        $pictures = Picture::latest()->with('imageable')->paginate(env('API_QUERY_LIMIT',50));
-        return PicturesResource::collection($pictures);
-    }
-
-	public function query()
-	{
 		return Picture::queryBuilder();
-	}
+    }
 
     public function store(PictureCreateRequest $request): PicturesResource
     {
@@ -38,7 +31,6 @@ class PicturesController extends Controller
 
     public function show(Picture $picture): PicturesResource
     {
-		$this->authorize('view', $picture);
         $picture = Picture::where('id',$picture->id)->with('imageable')->first();
         return new PicturesResource($picture);
     }

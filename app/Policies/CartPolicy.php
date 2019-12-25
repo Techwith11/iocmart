@@ -17,7 +17,7 @@ class CartPolicy
 
     public function view(User $user, Cart $cart): bool
     {
-    	return $cart->user_id === $user->id || $user->isAdmin();
+    	return true;
     }
 
     public function create(User $user): bool

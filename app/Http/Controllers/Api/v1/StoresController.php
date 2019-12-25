@@ -18,19 +18,13 @@ class StoresController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['store','update', 'logo', 'destroy']);
+        $this->middleware('auth:api')->except(['index', 'show']);
     }
 
-    public function index(): AnonymousResourceCollection
-	{
-        $stores = Store::latest()->with('user', 'picture')->paginate(env('API_QUERY_LIMIT',50));
-        return StoresResource::collection($stores);
-    }
-
-	public function query()
+    public function index()
 	{
 		return Store::queryBuilder();
-	}
+    }
 
     public function store(StoreCreateRequest $request)
     {

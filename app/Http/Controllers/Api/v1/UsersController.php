@@ -17,19 +17,13 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['update', 'profile','destroy']);
+        $this->middleware('auth:api')->except(['index', 'store', 'show']);
     }
 
-    public function index(): AnonymousResourceCollection
+    public function index()
     {
-        $users = User::latest()->with('store', 'picture')->paginate(env('API_QUERY_LIMIT',50));
-        return UsersResource::collection($users);
-    }
-
-	public function query()
-	{
 		return User::queryBuilder();
-	}
+    }
 
     public function store(UserCreateRequest $request): UsersResource
     {

@@ -12,12 +12,12 @@ class PicturePolicy
 
    	public function viewAny(User $user): bool
     {
-		return $user->isAdmin();
+		return true;
     }
 
     public function view(User $user, Picture $picture): bool
     {
-		return $user->isAdmin();
+		return true;
     }
 
     public function create(User $user): bool

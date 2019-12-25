@@ -15,20 +15,13 @@ class OrdersController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('auth:api')->except(['query']);
+		$this->middleware('auth:api')->except(['index', 'show']);
 	}
 
-    public function index(): AnonymousResourceCollection
+    public function index()
     {
-		$this->authorize('viewAny', Order::class);
-		$orders = Order::with('post', 'cart')->paginate(env('API_QUERY_LIMIT',50));
-		return OrdersResource::collection($orders);
-    }
-
-	public function query()
-	{
 		return Order::queryBuilder();
-	}
+    }
 
     public function store(OrderCreateRequest $request): OrdersResource
     {

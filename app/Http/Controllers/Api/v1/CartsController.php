@@ -16,20 +16,13 @@ class CartsController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('auth:api')->except(['query']);
+		$this->middleware('auth:api')->except(['index', 'show']);
 	}
 
-    public function index(): AnonymousResourceCollection
+    public function index()
     {
-		$this->authorize('viewAny', Cart::class);
-		$carts = Cart::myCarts()->with('orders')->paginate(env('API_QUERY_LIMIT',50));
-		return CartsResource::collection($carts);
-    }
-
-	public function query()
-	{
 		return Cart::queryBuilder();
-	}
+    }
 
     public function store(CartCreateRequest $request): CartsResource
     {
