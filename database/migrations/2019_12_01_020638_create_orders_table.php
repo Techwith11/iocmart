@@ -10,7 +10,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', static function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->integer('user_id')->unsigned();
+			$table->integer('cart_id')->unsigned();
 			$table->integer('post_id')->unsigned();
 			$table->integer('quantity')->unsigned();
 			$table->integer('delivered')->unsigned()->default(0);
