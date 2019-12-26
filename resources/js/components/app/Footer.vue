@@ -1,50 +1,38 @@
 <template>
-	<footer class="row text-center">
-		<div class="col-12">
-			<a href="#"><i class="fab fa-facebook"></i></a>
-			<a href="#"><i class="fab fa-twitter"></i></a>
-			<a href="#"><i class="fab fa-instagram"></i></a>
-			<a href="#"><i class="fab fa-linkedin"></i></a>
-		</div>
-		<div class="col-12 col-lg-4">
-			<p>Got any issues? Contact Us Today</p>
-			<p>FAQs</p>
-			<p>Become a sponsor</p>
-		</div>
-		<div class="col-12 col-lg-4">
-			<p>Got any issues? Contact Us Today</p>
-			<p>FAQs</p>
-			<p>Become a sponsor</p>
-		</div>
-		<div class="col-12 col-lg-4">
-			<p>Got any issues? Contact Us Today</p>
-			<p>FAQs</p>
-			<p>Become a sponsor</p>
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+						<ul class="footer_nav">
+							<li><a href="#">Blog</a></li>
+							<li><a href="#">FAQs</a></li>
+							<li><a href="#">Contact us</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+						<ul>
+							<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="footer_nav_container">
+						<div class="cr">&copy; 2019 IOCMART</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</footer>
 </template>
 
 <style scoped>
-	footer{
-		padding: 0 5%;
-	}
-	.fa-facebook {
-		color: #3b5998;
-	}
-	.fa-twitter{
-		color: #00aced;
-	}
-	.fa-instagram{
-		color: #517fa4;
-	}
-	.fa-linked-in{
-		color: #0000ff;
-	}
-	.fab{
-		font-size: 2em;
-		padding: 0.5em;
-	}
-	.fab:hover{
-		color: #aaa;
-	}
 </style>
