@@ -74,8 +74,7 @@
 							</div>
 							<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
 						</div> -->
-
-						<div class="text-center"><h3 class="text-muted">No products yet!</h3></div>
+						<ProductList />
 					</div>
 				</div>
 			</div>
@@ -446,10 +445,27 @@
 
 <script>
 	import Carousel from "../components/HomeCarousel";
+	import ProductList from '../components/products/ProductList';
 	export default {
-	    name: "Home",
+		name: "Home",
+		data: function () {
+			return {
+				//
+			}
+		},
 		components: {
 	        "carousel": Carousel
+		},
+		mounted: function() {
+			this.$store.dispatch('product.FETCH');
+		},
+		computed: {
+			products(){
+				return this.$store.getters('product.products', 'FETCH')
+			},
+			categories(){
+				return this.$store.getters('category.categories', 'FETCH')
+			},
 		}
 	}
 </script>
