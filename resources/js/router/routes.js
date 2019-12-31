@@ -1,17 +1,17 @@
-module.exports = [
+export default [
 	{
 		path: "/",
-		name: "home",
+		name: "Home",
 		component: () => import("../views/Home.vue")
 	},
 	{
 		path: "/products",
-		name: "products",
+		name: "Products",
 		component: () => import("../views/product/ProductList.vue")
 	},
 	{
 		path: "/products/:id",
-		name: "product",
+		name: "Product",
 		component: () => import("../views/product/ProductSingle.vue")
 	},
 	{
@@ -21,12 +21,12 @@ module.exports = [
 	},
 	{
 		path: "/login",
-		name: "login",
+		name: "Login",
 		component: () => import("../views/auth/Login.vue")
 	},
 	{
 		path: "/register",
-		name: "register",
+		name: "Register",
 		component: () => import("../views/auth/Register.vue")
 	},
 

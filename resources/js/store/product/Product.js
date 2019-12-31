@@ -1,4 +1,4 @@
-import Axios from "axios";
+// import axios from "axios";
 
 class Product {
 	constructor(product) {
@@ -16,7 +16,8 @@ class Product {
 	}
 
 	get getCategoryName() {
-		Axios.get("/v1/categories/" + this.category_id)
+		axios
+			.get("/v1/categories/" + this.category_id)
 			.then(function(response) {
 				this.category = response.data;
 				return this.category;

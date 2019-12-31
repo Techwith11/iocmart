@@ -1,15 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-//import store from "../store/";
-
 Vue.use(Router);
 
 import routes from "./routes";
 
 const router = new Router({
 	mode: "history",
-	base: process.env.BASE_URL,
 	routes
 });
 

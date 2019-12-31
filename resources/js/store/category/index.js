@@ -1,5 +1,5 @@
 import Category from "./Category";
-import Axios from "axios";
+// import axios from "axios";
 
 export default {
 	namespaced: true,
@@ -18,7 +18,8 @@ export default {
 	},
 	actions: {
 		FETCH({ commit }, order = "") {
-			Axios.get("/categories/?order_by=name&order=" + order)
+			axios
+				.get("/categories/?order_by=name&order=" + order)
 				.then(function(response) {
 					let categories = [];
 					response.data.forEach(function(category) {
@@ -30,7 +31,8 @@ export default {
 				.catch();
 		},
 		FETCH_WITH({ commit }, options) {
-			Axios.get("/categories/?with=" + options)
+			axios
+				.get("/categories/?with=" + options)
 				.then(function(response) {
 					let categories = [];
 					response.data.forEach(function(category) {
@@ -42,9 +44,15 @@ export default {
 				.catch();
 		},
 		FIND_BY({ commit }, value, where = "id", op = "=") {
-			Axios.get(
-				"/categories/?where=" + where + "&op=" + op + "&value=" + value
-			)
+			axios
+				.get(
+					"/categories/?where=" +
+						where +
+						"&op=" +
+						op +
+						"&value=" +
+						value
+				)
 				.then(function(response) {
 					category = new Category(response.data[0]);
 					return category;
@@ -52,7 +60,7 @@ export default {
 				.catch();
 		},
 		CREATE({ commit }, category) {
-			Axios.category("/categories/store", {
+			axios.category("/categories/store", {
 				data: category
 			});
 		},

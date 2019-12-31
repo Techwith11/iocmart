@@ -1,7 +1,5 @@
 window.Popper = require("popper.js").default;
 window.$ = window.jQuery = require("jquery");
-const $ = require("jquery");
-const jQuery = require("jquery");
 
 require("bootstrap");
 require("@fortawesome/fontawesome-free");
@@ -29,10 +27,10 @@ window.Echo = new Echo({
 // import './assets/js/categories_custom';
 // import './assets/js/contact_custom';
 // import './assets/js/single_custom';
-import "./assets/js/custom";
+// import "./assets/js/custom";
 
-import "./assets/js/plugins/Isotope/isotope.pkgd.min.js";
-import "./assets/js/plugins/OwlCarousel2-2.2.1/owl.carousel.js";
-import "./assets/js/plugins/easing/easing.js";
+require("./assets/js/plugins/Isotope/isotope.pkgd.min.js");
+// import "./assets/js/plugins/OwlCarousel2-2.2.1/owl.carousel.js";
+// import "./assets/js/plugins/easing/easing.js";
 // import './assets/js/';
 // import './assets/js/';

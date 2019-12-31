@@ -1,5 +1,7 @@
 import Product from "./Product";
-import Axios from "axios";
+import api from "./../../api";
+
+const url = process.env.NODE_ENV === "production" ? api.prod : api.dev;
 
 export default {
 	namespaced: true,
@@ -18,9 +20,11 @@ export default {
 	},
 	actions: {
 		FETCH({ commit }, order = "desc") {
-			Axios.get("/posts/?order_by=created_at&order=" + order)
+			axios
+				.get(url + "/posts/?order_by=created_at&order=" + order)
 				.then(function(response) {
 					let products = [];
+					console.log(response);
 					response.data.forEach(function(product) {
 						products.push(new Product(product));
 					});
@@ -30,7 +34,8 @@ export default {
 				.catch();
 		},
 		FETCH_WITH({ commit }, options) {
-			Axios.get("/posts/?with=" + options)
+			axios
+				.get("/posts/?with=" + options)
 				.then(function(response) {
 					let products = [];
 					response.data.forEach(function(product) {
@@ -42,9 +47,8 @@ export default {
 				.catch();
 		},
 		FIND_BY({ commit }, value, where = "id", op = "=") {
-			Axios.get(
-				"/posts/?where=" + where + "&op=" + op + "&value=" + value
-			)
+			axios
+				.get("/posts/?where=" + where + "&op=" + op + "&value=" + value)
 				.then(function(response) {
 					product = new Product(response.data[0]);
 					return product;
@@ -52,7 +56,7 @@ export default {
 				.catch();
 		},
 		CREATE({ commit }, product) {
-			Axios.post("/posts/store", {
+			axios.post("/posts/store", {
 				data: product
 			});
 		},
