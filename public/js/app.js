@@ -40897,6 +40897,10 @@ __webpack_require__(/*! @fortawesome/fontawesome-free */ "./node_modules/@fortaw
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+window.axios.defaults.headers.common = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Credentials": "true"
+};
 /*let token = document.head.querySelector('meta[name="csrf-token"]');
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
@@ -41088,7 +41092,7 @@ __webpack_require__.r(__webpack_exports__);
   path: "/",
   name: "Home",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
   }
 }, {
   path: "/products",
@@ -41106,13 +41110,13 @@ __webpack_require__.r(__webpack_exports__);
   path: "/my-account",
   name: "my-account",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../views/auth/Login.vue */ "./resources/js/views/auth/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../views/auth/Login.vue */ "./resources/js/views/auth/Login.vue"));
   }
 }, {
   path: "/login",
   name: "Login",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../views/auth/Login.vue */ "./resources/js/views/auth/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../views/auth/Login.vue */ "./resources/js/views/auth/Login.vue"));
   }
 }, {
   path: "/register",
@@ -41361,7 +41365,12 @@ var url =  false ? undefined : _api__WEBPACK_IMPORTED_MODULE_1__["default"].dev;
     FETCH: function FETCH(_ref) {
       var commit = _ref.commit;
       var order = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "desc";
-      axios.get("api/posts/?order_by=created_at&order=" + order).then(function (response) {
+      // let instance = axios.create();
+      // console.log(instance);
+      // delete instance.defaults.headers.common["Accept"];
+      // delete instance.defaults.headers.common["X-Requested-With"];
+      // delete instance.defaults.headers.common["X-CSRF-TOKEN"];
+      axios.get(url + "/posts/?order_by=created_at&order=" + order).then(function (response) {
         var products = [];
         console.log(response);
         response.data.forEach(function (product) {

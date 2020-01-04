@@ -20,6 +20,13 @@ export default {
 	},
 	actions: {
 		FETCH({ commit }, order = "desc") {
+			// let instance = axios.create();
+			// console.log(instance);
+
+			// delete instance.defaults.headers.common["Accept"];
+			// delete instance.defaults.headers.common["X-Requested-With"];
+			// delete instance.defaults.headers.common["X-CSRF-TOKEN"];
+
 			axios
 				.get(url + "/posts/?order_by=created_at&order=" + order)
 				.then(function(response) {

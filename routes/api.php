@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/v1')->group(static function() {
+Route::prefix('/v1')->middleware('cors')->group(static function () {
 	Route::get('user', 'Api\\v1\\AuthController@user');
 	Route::get('docs', 'Api\\v1\\AuthController@docs');
 	Route::post('password', 'Api\\v1\\AuthController@password');
@@ -24,6 +24,6 @@ Route::prefix('/v1')->group(static function() {
 	]);
 });
 
-Route::any('/{path}', static function(){
+Route::any('/{path}', static function () {
 	throw new ModelNotFoundException("Route doesn't exist");
-})->where('path',"([A-z\d\/_.\\s]+)?");
+})->where('path', "([A-z\d\/_.\\s]+)?");
