@@ -58,7 +58,7 @@ class User extends Authenticatable
 		return $this->hasMany(Cart::class);
 	}
 
-	public function currentCart(): Model
+	public function getCurrentCartAttribute(): Model
 	{
 		return $this->carts()->notCheckedOut()->latest()->first() ?: $this->carts()->create([]);
 	}

@@ -12,7 +12,8 @@ $factory->define(Post::class, static function (Faker $faker) {
         'description' => $faker->paragraph(5),
         'price' => $faker->numberBetween(1000, 10000),
 		'quantity' => $faker->numberBetween(1,10),
-        'store_id' => $faker->numberBetween(1, 5),
-        'category_id' => $faker->numberBetween(1, 5),
+		'discount' => $faker->numberBetween(1,20),
+        'store_id' => $faker->numberBetween(1, 20),
+        'category_id' => $faker->numberBetween(1, 20),
     ];
 });

@@ -1,0 +1,139 @@
+<template>
+    <div>
+		<div v-if="fetching" class="text-center pt-5">
+			<i class="fas fa-spinner fa-spin text-primary fa-5x" id="spinner"></i>
+		</div>
+		<template v-else>
+			<div v-if="noPosts">
+				<p class="lead">There are currently no products available.</p>
+			</div>
+			<div class="d-none d-md-block">
+				<div class="row">
+					<div class="col-md-6 col-lg-4 text-center" v-for="post in posts.data" :key="post.id">
+						<div class="border">
+							<router-link :to="'/products/' + post.id" class="link">
+								<img :src="getFeaturedImage(post)" alt="Featured Image" class="w-100">
+								<p class="post-name pt-3">{{ post.name }}</p>
+								<p class="post-price">&#8358;{{ post.price | naira }}<span v-if="post.discount" class="post-discount">&#8358;{{ post.price | discount(post.discount) }}</span></p>
+							</router-link>
+							<div class="d-flex flex-row justify-content-between align-content-center">
+								<span class="post-quantity">In stock: {{ post.quantity }}</span>
+								<button class="btn btn-outline-danger" @click="() => alterInCart(post.id)">
+									<i class="fas fa-shopping-basket" :class="{ 'text-danger': isInCart(post.id), 'text-secondary': !isInCart(post.id) }"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-md-none">
+				<div class="row border" v-for="post in posts.data" :key="post.id">
+					<div class="col-4">
+						<img :src="getFeaturedImage(post)" alt="Featured Image" class="w-100">
+					</div>
+					<div class="col-8 pl-2">
+						<router-link :to="'/products/' + post.id" class="link">
+							<p class="post-name">{{ post.name }}</p>
+							<p class="post-price">&#8358;{{ post.price | naira }}<span v-if="post.quantity" class="post-discount">&#8358;{{ post.price | discount(post.quantity) }}</span></p>
+						</router-link>
+						<div class="d-flex flex-row justify-content-between align-content-center">
+							<span class="post-quantity">In stock: {{ post.quantity }}</span>
+							<button class="btn btn-outline-danger btn-sm" @click="() => alterInCart(post.id)">
+								<i class="fas fa-shopping-basket" :class="{ 'text-danger': isInCart(post.id), 'text-secondary': !isInCart(post.id) }"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
+		<pagination :data="posts" align="center" :limit="2" @pagination-change-page="getPosts" class="mt-3">
+			<span slot="prev-nav"><i class="fas fa-angle-left text-primary"></i></span>
+			<span slot="next-nav"><i class="fas fa-angle-right text-primary"></i></span>
+		</pagination>
+    </div>
+</template>
+
+<script>
+	import { mapActions, mapGetters } from 'vuex';
+
+    export default {
+		name: "ProductsList",
+		data(){
+			return {
+				posts: {},
+				fetching: false,
+			}
+		},
+		methods: {
+			...mapActions(['addToCart', 'removeFromCart']),
+			loadPosts(url){
+				this.fetching = true;
+				this.$Progress.start();
+                axios.get(url).then((response)=>{
+					$("body").get(0).scrollIntoView();
+					this.fetching = false;
+					this.$Progress.finish();
+                    this.posts = response.data;
+                }).catch(()=>{
+					this.$Progress.fail();
+                    new toast({
+                        type: 'error',
+                        title: "Error fetching posts",
+                    });
+                    this.fetching = false;
+                })
+            },
+            getPosts(page = 1) {
+                this.loadPosts(this.getRoutes.posts.index + page);
+			},
+			getFeaturedImage(post){
+				return post.pictures.length > 0 ? post.pictures[0].filename : "images/post-sample.png"
+			},
+			alterInCart(id){
+				if(this.isInCart(id)){
+					this.removeFromCart(id);
+				}else{
+					this.addToCart(id);
+				}
+			}
+		},
+		computed: {
+			...mapGetters(['getRoutes','isInCart']),
+			noPosts(){return this.posts.data ? this.posts.data.length < 1 : false}
+		},
+		mounted(){
+			this.getPosts();
+		}
+    }
+</script>
+
+<style scoped>
+	.link{
+		text-decoration: none;
+	}
+	.border{
+		border: 2px solid #777;
+		padding: 1rem;
+		margin: 0.5rem 0;
+		border-radius: 10px;
+	}
+	.post-name{
+		font-size: 1rem;
+		font-weight: bold;
+		color: #000;
+	}
+	.post-price{
+		font-size: 1.14rem;
+		color: #FF6875;
+	}
+	.post-discount{
+		font-size: 0.9rem;
+		color: #777;
+		text-decoration: line-through;
+	}
+	.post-quantity{
+		font-size: 0.9rem;
+		color:#000;
+		font-weight: bold;
+	}
+</style>

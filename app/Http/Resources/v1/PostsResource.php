@@ -13,6 +13,7 @@ class PostsResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
+            'discount' => $this->discount,
 			'is_ordered_by' => $this->is_ordered_by,
             'store' => $this->store,
 			'quantity' => $this->quantity,

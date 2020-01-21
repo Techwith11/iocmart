@@ -40,7 +40,7 @@ abstract class Base
 		/* generic fields */ 'id', 'created_at', 'updated_at',
 		/* user fields */ 'name', 'email', 'email_verified_at', 'phone', 'phone.phone_country', 'phone.phone', 'role',
 		/* user relations */ 'store', 'orders', 'picture',
-		/* post fields */ 'description', 'price', 'quantity', 'store_id', 'category_id',
+		/* post fields */ 'description', 'price', 'quantity', 'store_id', 'category_id', 'discount',
 		/* post relations */'store', 'category', 'pictures', 'orders',
 		/* store fields */ 'link', 'user_id', 'picture',
 		/* store relations */'user', 'posts',

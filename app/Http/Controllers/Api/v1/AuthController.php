@@ -22,7 +22,7 @@ class AuthController extends Controller
 
     public function user(): ProfileResource
     {
-        $user = User::where('id', auth('api')->id())->with(['picture','store'])->append('currentCart')->get();
+        $user = User::where('id', auth('api')->id())->with(['picture','store'])->first()->append('currentCart');
         return new ProfileResource($user);
     }
 

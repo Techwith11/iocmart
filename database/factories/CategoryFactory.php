@@ -9,6 +9,6 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(Category::class, static function (Faker $faker) {
     return [
         'name' => $faker->word,
-        'parent_id' => $faker->numberBetween(0,2)
+        'parent_id' => $faker->numberBetween(0,4)
     ];
 });

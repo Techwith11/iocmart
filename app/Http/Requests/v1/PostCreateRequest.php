@@ -19,7 +19,8 @@ class PostCreateRequest extends FormRequest
 			'price' => 'required|numeric',
 			'category_id' => 'required|numeric',
 			'images' => 'sometimes|array',
-			'quantity' => 'required|numeric|min:1'
+			'quantity' => 'required|numeric|min:1',
+			'discount' => 'sometimes|numeric|min:0',
         ];
     }
 }

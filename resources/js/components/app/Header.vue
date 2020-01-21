@@ -1,150 +1,137 @@
 <template>
-  <div>
-    <!-- Header -->
-
-    <header class="header trans_300">
-      <!-- Top Navigation -->
-
-      <div class="top_nav">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="top_nav_left">free shipping on all u.s orders over $50</div>
-            </div>
-            <div class="col-md-6 text-right">
-              <div class="top_nav_right">
-                <ul class="top_nav_menu">
-                  <!-- My Account -->
-
-                  <li class="account">
-                    <a href="#">
-                      My Account
-                      <i class="fa fa-angle-down"></i>
-                    </a>
-                    <ul class="account_selection">
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-sign-in" aria-hidden="true"></i>Login
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-user-plus" aria-hidden="true"></i>Register
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main Navigation -->
-
-      <div class="main_nav_container">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 text-right">
-              <div class="logo_container">
-                <img src="../../assets/logo.png" alt="IOCMart" width="60" class="img-fluid" />
-                <a href="#">
-                  IOC
-                  <span>Mart</span>
-                </a>
-              </div>
-              <nav class="navbar">
-                <ul class="navbar_menu">
-                  <li class="nav-item">
-                    <router-link to="/" class="nav-link">Home</router-link>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="/" class="nav-link">Stores</router-link>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="/" class="nav-link">Services</router-link>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="/" class="nav-link">Contact Us</router-link>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="/" class="nav-link">FAQ</router-link>
-                  </li>
-                </ul>
-                <ul class="navbar_user">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-search" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="checkout">
-                    <a href="#">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <span id="checkout_items" class="checkout_items">2</span>
-                    </a>
-                  </li>
-                </ul>
-                <div class="hamburger_container">
-                  <i class="fa fa-bars" aria-hidden="true"></i>
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div class="fs_menu_overlay"></div>
-    <div class="hamburger_menu">
-      <div class="hamburger_close">
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </div>
-      <div class="hamburger_menu_content text-right">
-        <ul class="menu_top_nav">
-          <li class="menu_item has-children">
-            <a href="#">
-              My Account
-              <i class="fa fa-angle-down"></i>
-            </a>
-            <ul class="menu_selection">
-              <li>
-                <a href="#">
-                  <i class="fa fa-sign-in" aria-hidden="true"></i>Login
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-user-plus" aria-hidden="true"></i>Register
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Stores</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Services</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Contact Us</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">FAQ</router-link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+	<div>
+		<div class="container d-flex flex-row justify-content-between flex-nowrap" id="topbar">
+			<div>
+				<select>
+					<option>EN</option>
+				</select>
+				<select>
+					<option>NGN</option>
+				</select>
+			</div>
+			<div>
+				<router-link to='/profile' class="top-link">
+					<i class="fas fa-user"></i>
+					<span>My Profile</span>
+				</router-link>
+				<router-link to="/cart" class="top-link">
+					<i class="fas fa-shopping-basket"></i>
+					<span>0 items <span class="price">$0.00</span></span>
+				</router-link>
+				<router-link to="/search" class="top-link">
+					<i class="fas fa-search"></i>
+				</router-link>
+			</div>
+		</div>
+		<hr>
+		<div class="d-flex flex-row align-items-baseline justify-content-between justify-content-sm-center">
+			<router-link to="/" id="name">
+				<img src="@/assets/design/Logo.svg" height="30px" width="30px">
+				<span class="text-center ml-2">IOCMART</span>
+			</router-link>
+			<a class="navbar-toggler d-sm-none" id="toggler" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+				<span class="fas fa-bars"></span>
+			</a>
+		</div>
+		<nav class="navbar navbar-expand-sm">
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="navbar-nav mx-auto">
+					<li class="nav-item">
+						<router-link to="/" class="nav-link">Home</router-link>
+					</li>
+					<li class="nav-item">
+						<router-link to="/products" class="nav-link">Our Products</router-link>
+					</li>
+					<li class="nav-item">
+						<router-link to="/categories" class="nav-link">Categories</router-link>
+					</li>
+					<li class="nav-item">
+						<router-link to="/services" class="nav-link">Services</router-link>
+					</li>
+					<li class="nav-item">
+						<router-link to="/stores" class="nav-link">Stores</router-link>
+					</li>
+					<li class="nav-item" v-if="!isLoggedIn">
+						<router-link to="/login" class="nav-link">Login</router-link>
+					</li>
+					<li class="nav-item" v-if="!isLoggedIn">
+						<router-link to="/register" class="nav-link">Register</router-link>
+					</li>
+					<li class="nav-item" v-if="isLoggedIn">
+						<a class="nav-link" @click="logoutUser">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<hr>
+	</div>
 </template>
 
+<script>
+	import { mapGetters, mapActions } from "vuex";
+
+	export default {
+		name: "Header",
+		computed: {
+			...mapGetters(['isLoggedIn']),
+		},
+		methods: {
+			...mapActions(['logout']),
+			logoutUser(){
+				new swal({
+                    title: 'Are you sure you want to logout?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes',
+                }).then((result) => {
+                    if (result.value) {
+						this.$Progress.start();
+                        this.logout();
+						this.$router.push("/login");
+						this.$Progress.finish();
+						new toast({
+							type: 'success',
+							title: 'Logged out successfuly',
+						});
+                    }
+                })
+			}
+		}
+	}
+</script>
+
 <style scoped>
+	#topbar select{
+		margin: 0.5rem 0.75rem 0;
+		border: none;
+		background: #ffffff00;
+	}
+	#topbar .top-link{
+		margin: 0.5rem 0.75rem 0;
+		line-height: 2rem;
+		color: #000;
+		text-decoration: none;
+	}
+	#name{
+		padding: 0 1rem;
+		text-decoration: none;
+	}
+	#name span{
+		font-size: 2rem;
+		font-weight: bold;
+		color: #000;
+	}
+	#toggler{
+		padding: 0 1rem;
+	}
+	.nav-link{
+		color: #000;
+		margin: 0 0.50rem;
+	}
+	.price{
+		color: #777;
+		font-size: 0.8rem;
+	}
 </style>

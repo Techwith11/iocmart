@@ -1,13 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import product from "./product/index";
-import category from "./category/index";
+
+import auth from "./modules/auth";
+import routes from "./modules/routes";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
 	modules: {
-		product,
-		category
+		auth,
+		routes
 	}
 });

@@ -19,7 +19,8 @@ class PostUpdateRequest extends FormRequest
 			'category_id' => 'required|numeric',
 			'price' => 'required|numeric',
 			'images' => 'sometimes|array',
-			'quantity' => 'required|numeric|min:1'
+			'quantity' => 'required|numeric|min:1',
+			'discount' => 'sometimes|numeric|min:0',
         ];
     }
 }

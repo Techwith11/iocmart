@@ -12,6 +12,6 @@ $factory->define(App\Store::class, static function (Faker $faker) {
         'email_verified_at' => now(),
         'phone' => ['phone'=>$faker->phoneNumber, 'phone_country'=>$faker->countryCode],
         'link' => $faker->url,
-        'user_id' => $faker->unique()->numberBetween(1,5),
+        'user_id' => $faker->unique()->numberBetween(1,20),
     ];
 });
