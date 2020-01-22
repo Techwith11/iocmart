@@ -35,15 +35,11 @@ window.toast = toast;
 
 window.axios = require("axios");
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-<<<<<<< HEAD
-let token = document.head.querySelector('meta[name="csrf-token"]');
-=======
 window.axios.defaults.headers.common = {
 	"Access-Control-Allow-Origin": "*",
 	"Access-Control-Allow-Credentials": "true"
 };
-/*let token = document.head.querySelector('meta[name="csrf-token"]');
->>>>>>> 1d39dde40544abcc8513001671d1153bd268a960
+let token = document.head.querySelector('meta[name="csrf-token"]');
 if (token) {
 	window.axios.defaults.headers.common["X-CSRF-TOKEN"] = token.content;
 }
