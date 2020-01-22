@@ -1,18 +1,18 @@
 <template>
 	<div class="row">
-		<div class="col-12 col-md-4 banner" id="banner1">
+		<div class="col-12 col-sm-4 banner" id="banner1">
 			<h5>iPhone 6</h5>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
 			<h6>$399</h6>
 			<img src="@/assets/banners/banner1.png" width="100%">
 		</div>
-		<div class="col-12 col-md-4 banner" id="banner2">
+		<div class="col-12 col-sm-4 banner" id="banner2">
 			<h5>Oculus Rift</h5>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
 			<h6>$759</h6>
 			<img src="@/assets/banners/banner2.png" width="100%">
 		</div>
-		<div class="col-12 col-md-4 banner" id="banner3">
+		<div class="col-12 col-sm-4 banner" id="banner3">
 			<h5>GoPro Hero 6</h5>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
 			<h6>$299</h6>

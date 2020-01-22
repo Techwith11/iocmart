@@ -24,6 +24,6 @@ export default [
 	{
 		path: "*",
 		name: "Notfound",
-		component: () => import("@/views/404.vue")
+		component: () => import("@/views/NotFound.vue")
 	}
 ];

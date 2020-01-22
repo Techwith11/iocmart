@@ -477,7 +477,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "col-12 col-md-4 banner", attrs: { id: "banner1" } },
+        { staticClass: "col-12 col-sm-4 banner", attrs: { id: "banner1" } },
         [
           _c("h5", [_vm._v("iPhone 6")]),
           _vm._v(" "),
@@ -500,7 +500,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-12 col-md-4 banner", attrs: { id: "banner2" } },
+        { staticClass: "col-12 col-sm-4 banner", attrs: { id: "banner2" } },
         [
           _c("h5", [_vm._v("Oculus Rift")]),
           _vm._v(" "),
@@ -523,7 +523,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-12 col-md-4 banner", attrs: { id: "banner3" } },
+        { staticClass: "col-12 col-sm-4 banner", attrs: { id: "banner3" } },
         [
           _c("h5", [_vm._v("GoPro Hero 6")]),
           _vm._v(" "),

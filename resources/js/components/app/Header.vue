@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<div class="container d-flex flex-row justify-content-between flex-nowrap" id="topbar">
-			<div>
+		<div class="container d-flex flex-row justify-content-between mt-1" id="topbar">
+			<div class="d-flex flex-row">
 				<select>
 					<option>EN</option>
 				</select>
@@ -9,14 +9,14 @@
 					<option>NGN</option>
 				</select>
 			</div>
-			<div>
+			<div class="d-flex flex-row">
 				<router-link to='/profile' class="top-link">
 					<i class="fas fa-user"></i>
-					<span>My Profile</span>
+					<span class="d-none d-sm-inline">My Profile</span>
 				</router-link>
 				<router-link to="/cart" class="top-link">
 					<i class="fas fa-shopping-basket"></i>
-					<span>0 items <span class="price">$0.00</span></span>
+					<span class="d-none d-sm-inline">0 items <span class="price">$0.00</span></span>
 				</router-link>
 				<router-link to="/search" class="top-link">
 					<i class="fas fa-search"></i>
@@ -26,8 +26,8 @@
 		<hr>
 		<div class="d-flex flex-row align-items-baseline justify-content-between justify-content-sm-center">
 			<router-link to="/" id="name">
-				<img src="@/assets/design/Logo.svg" height="30px" width="30px">
-				<span class="text-center ml-2">IOCMART</span>
+				<!-- <img src="@/assets/design/logo.svg" alt="" height="20px" width="20px"> -->
+				<span class="ml-2">IOCMART</span>
 			</router-link>
 			<a class="navbar-toggler d-sm-none" id="toggler" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
 				<span class="fas fa-bars"></span>
@@ -104,15 +104,17 @@
 
 <style scoped>
 	#topbar select{
-		margin: 0.5rem 0.75rem 0;
 		border: none;
 		background: #ffffff00;
 	}
 	#topbar .top-link{
-		margin: 0.5rem 0.75rem 0;
+		margin: 0.5rem 0.5rem 0;
 		line-height: 2rem;
 		color: #000;
 		text-decoration: none;
+	}
+	#topbar .top-link i{
+		color: #000;
 	}
 	#name{
 		padding: 0 1rem;

@@ -14,11 +14,11 @@
 							<router-link :to="'/products/' + post.id" class="link">
 								<img :src="getFeaturedImage(post)" alt="Featured Image" class="w-100">
 								<p class="post-name pt-3">{{ post.name }}</p>
-								<p class="post-price">&#8358;{{ post.price | naira }}<span v-if="post.discount" class="post-discount">&#8358;{{ post.price | discount(post.discount) }}</span></p>
+								<p class="post-price">&#8358;{{ post.price | discount(post.discount) }}<span v-if="post.discount" class="post-discount">&#8358;{{ post.price | discount }}</span></p>
 							</router-link>
 							<div class="d-flex flex-row justify-content-between align-content-center">
 								<span class="post-quantity">In stock: {{ post.quantity }}</span>
-								<button class="btn btn-outline-danger" @click="() => alterInCart(post.id)">
+								<button class="btn" :class="{ 'btn-primary': isInCart(post.id), 'btn-outline-secondary': !isInCart(post.id) }" @click="() => alterInCart(post.id)">
 									<i class="fas fa-shopping-basket" :class="{ 'text-danger': isInCart(post.id), 'text-secondary': !isInCart(post.id) }"></i>
 								</button>
 							</div>
@@ -34,11 +34,11 @@
 					<div class="col-8 pl-2">
 						<router-link :to="'/products/' + post.id" class="link">
 							<p class="post-name">{{ post.name }}</p>
-							<p class="post-price">&#8358;{{ post.price | naira }}<span v-if="post.quantity" class="post-discount">&#8358;{{ post.price | discount(post.quantity) }}</span></p>
+							<p class="post-price">&#8358;{{ post.price | discount(post.discount) }}<span v-if="post.discount" class="post-discount">&#8358;{{ post.price | discount }}</span></p>
 						</router-link>
 						<div class="d-flex flex-row justify-content-between align-content-center">
 							<span class="post-quantity">In stock: {{ post.quantity }}</span>
-							<button class="btn btn-outline-danger btn-sm" @click="() => alterInCart(post.id)">
+							<button class="btn btn-sm" :class="{ 'btn-primary': isInCart(post.id), 'btn-outline-secondary': !isInCart(post.id) }" @click="() => alterInCart(post.id)">
 								<i class="fas fa-shopping-basket" :class="{ 'text-danger': isInCart(post.id), 'text-secondary': !isInCart(post.id) }"></i>
 							</button>
 						</div>
