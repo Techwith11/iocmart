@@ -1,12 +1,12 @@
 <template>
     <div>
         <h1 class="text-center display-4">Login</h1>
-        <form class="container">
+        <form class="container" autocomplete="on">
             <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">Email</label>
                 <div class="col-md-8">
                     <input id="email" type="email" class="form-control" name="email" :class="{ 'is-valid': !form.errors.has('email') && isSubmitted,'is-invalid': form.errors.has('email') }"
-                        v-model="form.email" autocomplete="email" autofocus placeholder="Your registered email address">
+                        v-model="form.email" autofocus placeholder="Your registered email address">
                     <has-error :form="form" field="email"></has-error>
                 </div>
             </div>
@@ -14,7 +14,7 @@
                 <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                 <div class="col-md-8">
                     <input id="password" type="password" class="form-control" name="password" :class="{ 'is-valid': !form.errors.has('password') && isSubmitted,'is-invalid': form.errors.has('password') }"
-                        v-model="form.password" autocomplete="password" autofocus placeholder="Your associated password">
+                        v-model="form.password" autofocus placeholder="Your associated password">
                     <has-error :form="form" field="password"></has-error>
                 </div>
             </div>

@@ -1,12 +1,12 @@
 <template>
     <div>
         <h1 class="text-center display-4">Register</h1>
-        <form class="container">
+        <form class="container" autocomplete="on">
             <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                 <div class="col-md-8">
                     <input id="name" type="text" class="form-control" name="name" :class="{ 'is-valid': !form.errors.has('name') && isSubmitted,'is-invalid': form.errors.has('name') }"
-                        v-model="form.name" autocomplete="name" autofocus placeholder="Full Name">
+                        v-model="form.name" autofocus placeholder="Full Name">
                     <has-error :form="form" field="name"></has-error>
                 </div>
             </div>
@@ -14,7 +14,7 @@
                 <label for="name" class="col-md-4 col-form-label text-md-right">Email</label>
                 <div class="col-md-8">
                     <input id="email" type="email" class="form-control" name="email" :class="{ 'is-valid': !form.errors.has('email') && isSubmitted,'is-invalid': form.errors.has('email') }"
-                        v-model="form.email" autocomplete="email" autofocus placeholder="Valid Email Address">
+                        v-model="form.email" autofocus placeholder="Valid Email Address">
                     <has-error :form="form" field="email"></has-error>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <label for="phone" class="col-md-4 col-form-label text-md-right">Phone Number</label>
                 <div class="col-md-8">
                     <input id="phone" type="tel" class="form-control" name="phone" :class="{ 'is-valid': !form.errors.has('phone') && isSubmitted,'is-invalid': form.errors.has('phone.phone') }"
-                        v-model="form.phone.phone" autocomplete="phone" autofocus placeholder="Valid Phone Number In Nigeria">
+                        v-model="form.phone.phone" autofocus placeholder="Valid Phone Number In Nigeria">
                     <has-error :form="form" field="phone.phone"></has-error>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                 <div class="col-md-8">
                     <input id="password" type="password" class="form-control" name="password" :class="{ 'is-valid': !form.errors.has('password') && isSubmitted,'is-invalid': form.errors.has('password') }"
-                        v-model="form.password" autocomplete="password" autofocus placeholder="Minimum of 8 characters">
+                        v-model="form.password" autofocus placeholder="Minimum of 8 characters">
                     <has-error :form="form" field="password"></has-error>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
                 <div class="col-md-8">
                     <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" :class="{ 'is-valid': !form.errors.has('password_confirmation') && isSubmitted,'is-invalid': form.errors.has('password_confirmation') }"
-                        v-model="form.password_confirmation" autocomplete="password_confirmation" autofocus placeholder="Must match password field">
+                        v-model="form.password_confirmation" autofocus placeholder="Must match password field">
                     <has-error :form="form" field="password__confirmation"></has-error>
                 </div>
             </div>

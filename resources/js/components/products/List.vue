@@ -84,10 +84,10 @@
                 })
             },
             getPosts(page = 1) {
-                this.loadPosts(this.getRoutes.posts.index + page);
+                this.loadPosts(this.getRoutes.posts.list + page);
 			},
 			getFeaturedImage(post){
-				return post.pictures.length > 0 ? post.pictures[0].filename : "images/post-sample.png"
+				return post.pictures.length > 0 ? post.pictures[0].filename : window.location.origin + "/images/post-sample.png"
 			},
 			alterInCart(id){
 				if(this.isInCart(id)){

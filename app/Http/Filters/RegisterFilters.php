@@ -16,6 +16,7 @@ trait RegisterFilters
 				Limit::class,
 				Offset::class,
 				OrderBy::class,
+				Select::class,
 				Where::class,
 				With::class,
 			])

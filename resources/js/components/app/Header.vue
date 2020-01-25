@@ -10,6 +10,10 @@
 				</select>
 			</div>
 			<div class="d-flex flex-row">
+				<router-link to='/products/new' class="top-link">
+					<i class="fas fa-plus"></i>
+					<span class="d-none d-sm-inline">Add Product</span>
+				</router-link>
 				<router-link to='/profile' class="top-link">
 					<i class="fas fa-user"></i>
 					<span class="d-none d-sm-inline">My Profile</span>

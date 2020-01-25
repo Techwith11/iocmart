@@ -31,7 +31,7 @@ class PostsController extends Controller
 			return response()->json([ 'errors' => [ 'name' => 'User does not have an existing store' ] ],400);
 		}
         $request->merge(['store_id' => auth('api')->user()->store->id ?: 0 ]);
-        $post =  Post::create($request->only(['name','description','category_id','price','store_id']));
+        $post =  Post::create($request->only(['name','description','category_id','price','store_id', 'discount','quantity']));
 		if($request->images){
 			$params = [
 				'images' => $request->images,
@@ -39,7 +39,7 @@ class PostsController extends Controller
 				'path' => 'images/posts/'
 			];
 			event(new NewMultipleImagesUploadedEvent($params));
-		}
+        }
         return new PostsResource($post);
     }
 
@@ -52,7 +52,7 @@ class PostsController extends Controller
     public function update(PostUpdateRequest $request, Post $post): PostsResource
     {
 		$this->authorize('update', $post);
-        $post->update($request->only(['name','description','category_id','price']));
+        $post->update($request->only(['name','description','category_id','price','discount','quantity']));
 		if($request->images){
 			$params = [
 				'images' => $request->images,

@@ -5,19 +5,19 @@
 			<div class="row">
 				<div class="col-12 col-md-4">
 					<h4>IOCMart</h4>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.Since the 1500s, when an unknown printer.</p>
+					<p>Get the power of shopping for all your heart desires from your favourite stores on your fingertips</p>
 				</div>
 				<div class="col-12 col-md-4">
 					<h6>Follow Us</h6>
-					<p>Since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+					<p>Connect with us across all social media platforms.</p>
 					<a href="https://facebook.com" target="__blank"><img src="@/assets/socials/facebook.svg" alt="" class="socials"></a>
 					<a href="https://twitter.com" target="__blank"><img src="@/assets/socials/twitter.svg" alt="" class="socials"></a>
 				</div>
 				<div class="col-12 col-md-4">
 					<h6>Contact Us</h6>
-					<p>My Company , 4578 Marmora Road, Glasgow  D04 89GR</p>
-					<p>Call us now: 0123-456-789</p>
-					<p>Email: support@whatever.com</p>
+					<p>University of Lagos, Akoka, Lagos State, Nigeria.</p>
+					<p>Call us now: 0703-108-2198</p>
+					<p>Email: iocmartsetup@gmail.com</p>
 				</div>
 			</div>
 			<hr>
@@ -68,7 +68,7 @@
 		</div>
 		<hr>
 		<div class="container">
-			<p>&copy;{{ new Date().getFullYear() }} <a href="/">iocmart.com</a></p>
+			<p>&copy;{{ new Date().getFullYear() }} <router-link to="/">iocmart.com</router-link></p>
 		</div>
 	</footer>
 </template>

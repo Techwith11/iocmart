@@ -15,7 +15,7 @@
 	export default {
 		name: "App",
 		components: {
-		    'app-nav-bar': Header,
+			'app-nav-bar': Header,
 			'app-footer': Footer,
 		},
 		beforeMount() {

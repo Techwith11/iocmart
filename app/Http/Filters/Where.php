@@ -9,8 +9,8 @@ class Where extends Base
 		$column = $this->verifyRequestField(request($this->name()));
 		return $builder->where(
 			$column,
-			request('op') ?: '=',
-			request('value') ?: ''
+			request()->has('op') ? request('op') : '=',
+			request()->has('value') ? request('value') : ''
 		);
 	}
 }

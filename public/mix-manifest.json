@@ -1,4 +1,14 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/cart.bundle.js": "/js/cart.bundle.js",
+    "/js/home.bundle.js": "/js/home.bundle.js",
+    "/js/login.bundle.js": "/js/login.bundle.js",
+    "/js/not-found.bundle.js": "/js/not-found.bundle.js",
+    "/js/product-index.bundle.js": "/js/product-index.bundle.js",
+    "/js/product-list.bundle.js": "/js/product-list.bundle.js",
+    "/js/product-new.bundle.js": "/js/product-new.bundle.js",
+    "/js/product-single.bundle.js": "/js/product-single.bundle.js",
+    "/js/profile.bundle.js": "/js/profile.bundle.js",
+    "/js/register.bundle.js": "/js/register.bundle.js"
 }
