@@ -5,7 +5,7 @@
 			<div class="row">
 				<div class="col-12 col-md-4">
 					<h4>IOCMart</h4>
-					<p>Get the power of shopping for all your heart desires from your favourite stores on your fingertips</p>
+					<p>Get the power of shopping for all your heart desires from your favourite stores at your fingertips</p>
 				</div>
 				<div class="col-12 col-md-4">
 					<h6>Follow Us</h6>
@@ -44,11 +44,10 @@
 					<a href="#">Terms and Conditions</a>
 				</div>
 				<div class="col-4 col-md-2 my-3">
-					<h6 class="my-3">My Account</h6>
-					<a href="#">About Us</a>
-					<a href="#">Information</a>
-					<a href="#">Privacy Policy</a>
-					<a href="#">Terms and Conditions</a>
+					<h6 class="my-3">Account</h6>
+					<router-link to="/profile">My Profile</router-link>
+					<router-link to="/store">My Store</router-link>
+					<router-link to="/cart">My Cart</router-link>
 				</div>
 				<div class="col-4 col-md-2 my-3">
 					<h6 class="my-3">Useful Links</h6>
@@ -79,7 +78,7 @@
 		bottom: 0%;
 		padding: 5rem 0 0;
 	}
-	footer .links a{
+	footer .links a, footer .links router-link{
 		display: block;
 		color: #555;
 	}

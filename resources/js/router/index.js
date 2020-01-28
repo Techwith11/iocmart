@@ -19,7 +19,7 @@ router.beforeEach((to, from, next) => {
 		record => record.meta.onlyWhenLoggedOut
 	)
 	const cookies = store._vm.$cookies
-	const loggedIn = cookies.isKey('user') && cookies.isKey('oauth')
+	const loggedIn = cookies.hasKey('user') && cookies.hasKey('oauth')
 	if (requiresAuth && !loggedIn) {
 		store.dispatch('setIntended', to.fullPath)
 		return next('/login')

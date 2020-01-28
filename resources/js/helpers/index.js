@@ -9,7 +9,9 @@ import { Form, HasError } from 'vform'
 import ProgressBar from 'vue-progressbar'
 import Pagination from 'laravel-vue-pagination'
 import swal from 'sweetalert2'
-import axios from 'axios'
+import cookies from './cookies'
+
+import store from '@/store/'
 
 Vue.component(HasError.name, HasError)
 Vue.component('pagination', Pagination)
@@ -32,14 +34,35 @@ const toast = swal.mixin({
 })
 window.toast = toast
 
-window.axios = axios
+window.axios = require('axios')
 window.axios.defaults.headers.common = {
 	'Access-Control-Allow-Origin': '*',
 	'Access-Control-Allow-Credentials': 'true',
 	'X-Requested-With': 'XMLHttpRequest'
 }
+window.axios.interceptors.request.use(
+	request => {
+		store.dispatch('setBusy', true)
+		return request
+	},
+	error => {
+		store.dispatch('setBusy', false)
+		return Promise.reject(error)
+	}
+)
+window.axios.interceptors.response.use(
+	response => {
+		store.dispatch('setBusy', false)
+		return response
+	},
+	error => {
+		store.dispatch('setBusy', false)
+		return Promise.reject(error)
+	}
+)
 let token = document.head.querySelector('meta[name="csrf-token"]')
 if (token) {
 	window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 }
 Vue.prototype.$http = window.axios
+Vue.prototype.$cookies = cookies

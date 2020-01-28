@@ -1,9 +1,6 @@
 <template>
     <div>
-		<div v-if="fetching" class="text-center pt-5">
-			<i class="fas fa-spinner fa-spin text-primary fa-5x" id="spinner"></i>
-		</div>
-		<template v-else>
+		<template>
 			<div v-if="noPosts">
 				<p class="lead">There are currently no products available.</p>
 			</div>
@@ -46,7 +43,7 @@
 				</div>
 			</div>
 		</template>
-		<pagination :data="posts" align="center" :limit="2" @pagination-change-page="getPosts" class="mt-3">
+		<pagination :data="posts" align="center" :limit="2" @pagination-change-page="paginatePosts" class="mt-3">
 			<span slot="prev-nav"><i class="fas fa-angle-left text-primary"></i></span>
 			<span slot="next-nav"><i class="fas fa-angle-right text-primary"></i></span>
 		</pagination>
@@ -60,36 +57,37 @@
 		name: "ProductsList",
 		data(){
 			return {
-				posts: {},
-				fetching: false,
+				posts: {}
 			}
 		},
 		methods: {
-			...mapActions(['addToCart', 'removeFromCart']),
-			loadPosts(url){
-				this.fetching = true;
-				this.$Progress.start();
-                axios.get(url).then((response)=>{
+			...mapActions(['addToCart', 'removeFromCart', 'setIntended']),
+			loadPosts(){
+				let page = this.$route.query.tab ? this.$route.query.tab : 1;
+				console.log()
+				this.$Progress.start(10000);
+                axios.get(this.getRoutes.posts.list + page).then((response)=>{
+					this.posts = response.data;
 					$("body").get(0).scrollIntoView();
-					this.fetching = false;
 					this.$Progress.finish();
-                    this.posts = response.data;
                 }).catch(()=>{
 					this.$Progress.fail();
-                    new toast({
-                        type: 'error',
-                        title: "Error fetching posts",
-                    });
-                    this.fetching = false;
+                    new toast({ type: 'error', title: "Error fetching posts" });
                 })
             },
-            getPosts(page = 1) {
-                this.loadPosts(this.getRoutes.posts.list + page);
+            paginatePosts(page = 1) {
+				this.$router.push('/products?tab=' + page);
+				this.loadPosts();
 			},
 			getFeaturedImage(post){
 				return post.pictures.length > 0 ? post.pictures[0].filename : window.location.origin + "/images/post-sample.png"
 			},
 			alterInCart(id){
+				if(!this.isLoggedIn){
+					this.setIntended(this.$route.fullPath);
+					this.router.push('/login');
+					return new toast({ type: 'warning', title: "Login to continue"});
+				}
 				if(this.isInCart(id)){
 					this.removeFromCart(id);
 				}else{
@@ -98,11 +96,11 @@
 			}
 		},
 		computed: {
-			...mapGetters(['getRoutes','isInCart']),
+			...mapGetters(['getRoutes','isInCart', 'isLoggedIn']),
 			noPosts(){return this.posts.data ? this.posts.data.length < 1 : false}
 		},
 		mounted(){
-			this.getPosts();
+			this.loadPosts();
 		}
     }
 </script>

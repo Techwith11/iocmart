@@ -82,7 +82,7 @@
             regUser(){
                 this.disabled = true;
                 this.submitted = true;
-                this.$Progress.start();
+                this.$Progress.start(10000);
                 this.form.post(this.getRoutes.auth.register).then(response=>{
                     this.setToken({ token: response.data.data, remember: true });
                     axios.get(this.getRoutes.auth.profile).then(response=>{

@@ -6,7 +6,6 @@ use App\Http\Filters\RegisterFilters;
 use App\Observers\OrderObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Order extends Model
 {
@@ -26,13 +25,13 @@ class Order extends Model
 			auth('api')->user() ? auth('api')->user()->currentCart->id : 0);
 	}
 
-	public function cart(): HasOne
+	public function cart(): BelongsTo
 	{
-		return $this->hasOne(Cart::class);
+		return $this->belongsTo(Cart::class);
 	}
 
-	public function post(): HasOne
+	public function post(): BelongsTo
 	{
-		return $this->hasOne(Post::class);
+		return $this->belongsTo(Post::class);
 	}
 }

@@ -58,34 +58,25 @@
             loginUser(){
                 this.disabled = true;
                 this.submitted = true;
-                this.$Progress.start();
+                this.$Progress.start(10000);
                 this.form.post(this.getRoutes.auth.login).then(response=>{
                     this.setToken({ token: response.data.data, remember: this.rememberMe });
                     axios.get(this.getRoutes.auth.profile).then(response=>{
                         this.setAuth({ user: response.data.data, remember: this.rememberMe });
                         this.disabled = false;
 						this.$Progress.finish();
-						new toast({
-							type: 'success',
-							title: 'Logged In successfully',
-                        });
+						new toast({ type: 'success', title: 'Logged In successfully' });
                         this.$router.push(this.getIntended);
                         this.clearIntended();
 					}).catch(()=>{
                         this.disabled = false;
 						this.$Progress.fail();
-						new toast({
-							type: 'error',
-							title: 'Error fetching profile',
-						});
+						new toast({ type: 'error', title: 'Error fetching profile' });
 					});
                 }).catch(()=>{
                     this.disabled = false;
 					this.$Progress.fail();
-					new toast({
-						type: 'error',
-						title: 'Error logging in user',
-					});
+					new toast({ type: 'error', title: 'Error logging in user' });
                 });
             },
         },

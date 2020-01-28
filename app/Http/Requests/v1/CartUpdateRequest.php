@@ -14,8 +14,7 @@ class CartUpdateRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'checked_out' => 'sometimes|numeric',
-			'posts' => 'required|array'
+			'checked_out' => 'sometimes|numeric'
 		];
 	}
 }

@@ -28,8 +28,7 @@ class CartsController extends Controller
     {
 		$this->authorize('create', Cart::class);
 		$request->merge(['user_id' => auth('api')->id ]);
-		$cart =  Cart::create($request->except(['posts']));
-		$cart->orders->createMany($request['posts']);
+		$cart =  Cart::create($request->all());
 		return new CartsResource($cart);
     }
 
@@ -43,9 +42,7 @@ class CartsController extends Controller
     public function update(CartUpdateRequest $request, Cart $cart): CartsResource
     {
 		$this->authorize('update', $cart);
-		$cart->update($request->except(['posts']));
-		Order::where('cart_id',$cart->id)->delete();
-		$cart->orders->createMany($request['posts']);
+		$cart->update($request->all());
 		return new CartsResource($cart);
     }
 
