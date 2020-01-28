@@ -1,8 +1,7 @@
-import process from 'process'
 const base =
-	process.env.NODE_ENV == 'production'
-		? 'https://api.iocmart.com/v1/'
-		: 'http://api.example.com:8000/v1/'
+	window.location.protocol == 'http:'
+		? 'http://api.example.com:8000/v1/'
+		: 'https://api.iocmart.com/v1/'
 
 const state = {
 	routes: {
