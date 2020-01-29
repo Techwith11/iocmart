@@ -85,7 +85,7 @@
 			alterInCart(id){
 				if(!this.isLoggedIn){
 					this.setIntended(this.$route.fullPath);
-					this.router.push('/login');
+					this.$router.push('/login');
 					return new toast({ type: 'warning', title: "Login to continue"});
 				}
 				if(this.isInCart(id)){
