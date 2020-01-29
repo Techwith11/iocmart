@@ -3,13 +3,17 @@ export default [
 		path: "/",
 		name: "Home",
 		component: () =>
-			import(/* webpackChunkName: 'home' */ "@/views/Home.vue")
+			import(
+				/* webpackChunkName: 'home', webpackPrefetch: true */ "@/views/Home.vue"
+			)
 	},
 	{
 		path: "/login",
 		name: "Login",
 		component: () =>
-			import(/* webpackChunkName: 'login' */ "@/views/auth/Login.vue"),
+			import(
+				/* webpackChunkName: 'login', webpackPrefetch: true */ "@/views/auth/Login.vue"
+			),
 		meta: { onlyWhenLoggedOut: true }
 	},
 	{
@@ -17,7 +21,7 @@ export default [
 		name: "Register",
 		component: () =>
 			import(
-				/* webpackChunkName: 'register' */ "@/views/auth/Register.vue"
+				/* webpackChunkName: 'register', webpackPrefetch: true */ "@/views/auth/Register.vue"
 			),
 		meta: { onlyWhenLoggedOut: true }
 	},
@@ -26,7 +30,7 @@ export default [
 		name: "Profile",
 		component: () =>
 			import(
-				/* webpackChunkName: 'profile' */ "@/views/user/Profile.vue"
+				/* webpackChunkName: 'profile', webpackPrefetch: true */ "@/views/user/Profile.vue"
 			),
 		meta: { requiresAuth: true }
 	},
@@ -34,14 +38,16 @@ export default [
 		path: "/cart",
 		name: "Cart",
 		component: () =>
-			import(/* webpackChunkName: 'cart' */ "@/views/user/Cart.vue"),
+			import(
+				/* webpackChunkName: 'cart', webpackPrefetch: true */ "@/views/user/Cart.vue"
+			),
 		meta: { requiresAuth: true }
 	},
 	{
 		path: "/products/",
 		component: () =>
 			import(
-				/* webpackChunkName: 'product-index' */ "@/views/products/index.vue"
+				/* webpackChunkName: 'product-index', webpackPrefetch: true */ "@/views/products/index.vue"
 			),
 		children: [
 			{
@@ -49,7 +55,7 @@ export default [
 				name: "ProductsList",
 				component: () =>
 					import(
-						/* webpackChunkName: 'product-list' */ "@/views/products/List.vue"
+						/* webpackChunkName: 'product-list', webpackPrefetch: true */ "@/views/products/List.vue"
 					)
 			},
 			{
@@ -57,7 +63,7 @@ export default [
 				name: "ProductNew",
 				component: () =>
 					import(
-						/* webpackChunkName: 'product-new' */ "@/views/products/New.vue"
+						/* webpackChunkName: 'product-new', webpackPrefetch: true */ "@/views/products/New.vue"
 					),
 				meta: { requiresAuth: true }
 			},
@@ -66,7 +72,7 @@ export default [
 				name: "ProductSingle",
 				component: () =>
 					import(
-						/* webpackChunkName: 'product-single' */ "@/views/products/Single.vue"
+						/* webpackChunkName: 'product-single', webpackPrefetch: true */ "@/views/products/Single.vue"
 					)
 			}
 		]
@@ -75,6 +81,8 @@ export default [
 		path: "*",
 		name: "Notfound",
 		component: () =>
-			import(/* webpackChunkName: 'not-found' */ "@/views/NotFound.vue")
+			import(
+				/* webpackChunkName: 'not-found', webpackPrefetch: true */ "@/views/NotFound.vue"
+			)
 	}
 ];
