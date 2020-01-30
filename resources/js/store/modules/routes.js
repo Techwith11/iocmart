@@ -1,4 +1,15 @@
-const base = window.location.protocol + '//api.' + window.location.host + '/v1'
+function getApiURL() {
+	var url = window.location.origin
+	var domain
+	domain = url.indexOf('://') > -1 ? url.split('/')[2] : url.split('/')[0]
+	domain =
+		domain.indexOf('www.') > -1
+			? domain.replace('www.', '//api.')
+			: '//api.' + domain
+	return window.location.protocol + domain + '/v1'
+}
+
+const base = getApiURL()
 
 const state = {
 	routes: {
