@@ -37,18 +37,18 @@ class AuthController extends Controller
 		return response()->json(['data' => 'true']);
 	}
 
-    public function login(UserLoginRequest $request): JsonResponse
+    public function login(UserLoginRequest $request): ProfileResource
     {
         if(auth()->attempt(['email' => $request['email'], 'password' => $request['password']])){
-            return response()->json([ 'data' => auth()->user()->passport_token ]);
+            return new ProfileResource(auth()->user());
         }
         return response()->json(['password' => trans('auth.failed')],400);
     }
 
-    public function register(UserCreateRequest $request): JsonResponse
+    public function register(UserCreateRequest $request): ProfileResource
     {
         $user = User::create($request->except(['password_confirmation']));
         auth()->login($user);
-        return response()->json([ 'data' => $user->passport_token ]);
+        return new ProfileResource($user);
     }
 }

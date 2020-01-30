@@ -10,7 +10,7 @@ class PicturePolicy
 {
     use HandlesAuthorization;
 
-   	public function viewAny(User $user): bool
+	public function viewAny(User $user): bool
     {
 		return true;
     }
@@ -27,29 +27,29 @@ class PicturePolicy
 
     public function update(User $user, Picture $picture): bool
     {
-		return $user->isAdmin() || $picture->imageable->id === $user->id ||
-			$picture->imageable->id === $user->store->id ||
-			$user->store->id === $picture->imageable->store_id;
+		return $user->isAdmin() || $picture->imageable->id == $user->id ||
+			$picture->imageable->id == $user->store->id ||
+			$user->store->id == $picture->imageable->store_id;
     }
 
     public function delete(User $user, Picture $picture): bool
     {
-		return $user->isAdmin() || $picture->imageable->id === $user->id ||
-			$picture->imageable->id === $user->store->id ||
-			$user->store->id === $picture->imageable->store_id;
+		return $user->isAdmin() || $picture->imageable->id == $user->id ||
+			$picture->imageable->id == $user->store->id ||
+			$user->store->id == $picture->imageable->store_id;
     }
 
     public function restore(User $user, Picture $picture): bool
     {
-		return $user->isAdmin() || $picture->imageable->id === $user->id ||
-			$picture->imageable->id === $user->store->id ||
-			$user->store->id === $picture->imageable->store_id;
+		return $user->isAdmin() || $picture->imageable->id == $user->id ||
+			$picture->imageable->id == $user->store->id ||
+			$user->store->id == $picture->imageable->store_id;
     }
 
     public function forceDelete(User $user, Picture $picture): bool
     {
-		return $user->isAdmin() || $picture->imageable->id === $user->id ||
-			$picture->imageable->id === $user->store->id ||
-			$user->store->id === $picture->imageable->store_id;
+		return $user->isAdmin() || $picture->imageable->id == $user->id ||
+			$picture->imageable->id == $user->store->id ||
+			$user->store->id == $picture->imageable->store_id;
     }
 }

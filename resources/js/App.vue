@@ -28,13 +28,12 @@
 			...mapGetters(["getRoutes","isBusy"]),
 		},
 		methods: {
-			...mapActions(["setAuth", "setToken","logout"]),
+			...mapActions(["setAuth","logout"]),
 			loginUserAutomatically() {
-				if (this.$cookies.hasKey("oauth") && this.$cookies.hasKey("user")) {
-					this.setToken({ token: this.$cookies.get("oauth"), remember: true});
-					this.setAuth({ user: this.$cookies.get("user"), remember: true});
+				if (this.$cookies.hasKey("user_profile")) {
+					this.setAuth({ data: this.$cookies.get("user_profile"), remember: true});
 					axios.get(this.getRoutes.auth.profile).then(response=>{
-						this.setAuth({ user: response.data.data, remember: true });
+						this.setAuth({ data: response.data.data, remember: true });
 					}).catch(()=> this.logout());
 				}else{
 					this.logout();

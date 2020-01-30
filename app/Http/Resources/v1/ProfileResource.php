@@ -10,16 +10,19 @@ class ProfileResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'email_verified_at' => $this->email_verified_at,
-            'role' => $this->role,
-            'phone' => $this->phone,
+            'user' => [
+                'id' => $this->id,
+                'name' => $this->name,
+                'email' => $this->email,
+                'email_verified_at' => $this->email_verified_at,
+                'role' => $this->role,
+                'phone' => $this->phone,
+                'picture' => $this->picture,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
+            ],
+            'token' => $this->passport_token,
             'store' => $this->store,
-            'picture' => $this->picture,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
 			'cart' => $this->currentCart
         ];
     }

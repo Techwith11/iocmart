@@ -27,21 +27,21 @@ class StorePolicy
 
     public function update(User $user, Store $store): bool
     {
-		return $store->user_id === $user->id || $user->isAdmin();
+		return $store->user_id == $user->id || $user->isAdmin();
     }
 
     public function delete(User $user, Store $store): bool
     {
-		return $store->user_id === $user->id || $user->isAdmin();
+		return $store->user_id == $user->id || $user->isAdmin();
     }
 
     public function restore(User $user, Store $store): bool
     {
-		return $store->user_id === $user->id || $user->isAdmin();
+		return $store->user_id == $user->id || $user->isAdmin();
     }
 
     public function forceDelete(User $user, Store $store): bool
     {
-		return $store->user_id === $user->id || $user->isAdmin();
+		return $store->user_id == $user->id || $user->isAdmin();
     }
 }

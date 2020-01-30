@@ -78,38 +78,22 @@
             disabled:false,
         }),
         methods: {
-            ...mapActions(["setAuth","setToken","clearIntended"]),
+            ...mapActions(["setAuth","clearIntended"]),
             regUser(){
                 this.disabled = true;
                 this.submitted = true;
                 this.$Progress.start(10000);
                 this.form.post(this.getRoutes.auth.register).then(response=>{
-                    this.setToken({ token: response.data.data, remember: true });
-                    axios.get(this.getRoutes.auth.profile).then(response=>{
-                        this.setAuth({ user: response.data.data, remember: true });
-                        this.disabled = false;
-						this.$Progress.finish();
-						new toast({
-							type: 'success',
-							title: 'Profile created successfully',
-                        });
-                        this.$router.push(this.getIntended);
-                        this.clearIntended();
-					}).catch(()=>{
-                        this.disabled = false;
-						this.$Progress.fail();
-						new toast({
-							type: 'error',
-							title: 'Error setting profile',
-						});
-					});
+                    this.setAuth({ data: response.data.data, remember: true });
+                    this.disabled = false;
+                    this.$Progress.finish();
+                    this.$router.push(this.getIntended);
+                    new toast({ type: 'success', title: 'Profile created successfully' });
+                    this.clearIntended();
                 }).catch(()=>{
                     this.disabled = false;
 					this.$Progress.fail();
-					new toast({
-						type: 'error',
-						title: 'Error creating user',
-					});
+					new toast({ type: 'error', title: 'Error creating user' });
                 });
             },
         },

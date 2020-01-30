@@ -26,21 +26,21 @@ class UserPolicy
 
     public function update(User $user, User $model): bool
     {
-		return $user->id === $model->id || $user->isAdmin();
+		return $user->id == $model->id || $user->isAdmin();
     }
 
     public function delete(User $user, User $model): bool
     {
-		return $user->id === $model->id || $user->isAdmin();
+		return $user->id == $model->id || $user->isAdmin();
     }
 
     public function restore(User $user, User $model): bool
     {
-		return $user->id === $model->id || $user->isAdmin();
+		return $user->id == $model->id || $user->isAdmin();
 	}
 
     public function forceDelete(User $user, User $model): bool
     {
-		return $user->id === $model->id || $user->isAdmin();
+		return $user->id == $model->id || $user->isAdmin();
 	}
 }

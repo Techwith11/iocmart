@@ -12,12 +12,12 @@ class OrderPolicy
 
     public function viewAny(User $user): bool
     {
-    	return true;
+		return true;
     }
 
     public function view(User $user, Order $order): bool
     {
-    	return true;
+		return true;
     }
 
     public function create(User $user): bool
@@ -27,21 +27,22 @@ class OrderPolicy
 
     public function update(User $user, Order $order): bool
     {
-		return $order->cart->user_id === $user->id || $user->isAdmin();
+		return $order->cart->user_id == $user->id || $user->isAdmin();
     }
 
     public function delete(User $user, Order $order): bool
     {
-		return $order->cart->user_id === $user->id || $user->isAdmin();
+		return $order->cart->user_id == $user->id || $user->isAdmin();
     }
 
     public function restore(User $user, Order $order):bool
     {
-		return $order->cart->user_id === $user->id || $user->isAdmin();
+
+		return $order->cart->user_id == $user->id || $user->isAdmin();
     }
 
     public function forceDelete(User $user, Order $order): bool
     {
-		return $order->cart->user_id === $user->id || $user->isAdmin();
+		return $order->cart->user_id == $user->id || $user->isAdmin();
     }
 }

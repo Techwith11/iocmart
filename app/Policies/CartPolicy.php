@@ -27,21 +27,21 @@ class CartPolicy
 
     public function update(User $user, Cart $cart): bool
     {
-		return $cart->user_id === $user->id || $user->isAdmin();
+		return $cart->user_id == $user->id || $user->isAdmin();
     }
 
     public function delete(User $user, Cart $cart): bool
     {
-		return $cart->user_id === $user->id || $user->isAdmin();
+		return $cart->user_id == $user->id || $user->isAdmin();
     }
 
     public function restore(User $user, Cart $cart):bool
     {
-		return $cart->user_id === $user->id || $user->isAdmin();
+		return $cart->user_id == $user->id || $user->isAdmin();
     }
 
     public function forceDelete(User $user, Cart $cart): bool
     {
-		return $cart->user_id === $user->id || $user->isAdmin();
+		return $cart->user_id == $user->id || $user->isAdmin();
     }
 }

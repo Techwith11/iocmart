@@ -27,21 +27,21 @@ class PostPolicy
 
     public function update(User $user, Post $post): bool
     {
-		return $post->store->user_id === $user->id || $user->isAdmin();
+		return $post->store->user_id == $user->id || $user->isAdmin();
     }
 
     public function delete(User $user, Post $post): bool
     {
-		return $post->store->user_id === $user->id || $user->isAdmin();
+		return $post->store->user_id == $user->id || $user->isAdmin();
     }
 
     public function restore(User $user, Post $post): bool
     {
-		return $post->store->user_id === $user->id || $user->isAdmin();
+		return $post->store->user_id == $user->id || $user->isAdmin();
     }
 
     public function forceDelete(User $user, Post $post): bool
     {
-		return $post->store->user_id === $user->id || $user->isAdmin();
+		return $post->store->user_id == $user->id || $user->isAdmin();
     }
 }
