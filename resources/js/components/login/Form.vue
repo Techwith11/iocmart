@@ -58,7 +58,7 @@
             loginUser(){
                 this.disabled = true;
                 this.submitted = true;
-                this.$Progress.start(10000);
+                this.$Progress.start();
                 this.form.post(this.getRoutes.auth.login).then(response=>{
                     this.setAuth({ data: response.data.data, remember: this.rememberMe });
                     this.disabled = false;

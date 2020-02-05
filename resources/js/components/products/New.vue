@@ -91,7 +91,7 @@
             addPost(){
                 this.disabled = true;
                 this.submitted = true;
-                this.$Progress.start(10000);
+                this.$Progress.start();
                 this.form.post(this.getRoutes.posts.base).then(response=>{
                     this.disabled = false;
                     this.$Progress.finish();

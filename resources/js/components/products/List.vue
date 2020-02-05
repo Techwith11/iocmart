@@ -15,8 +15,8 @@
 							</router-link>
 							<div class="d-flex flex-row justify-content-between align-content-center">
 								<span class="post-quantity">In stock: {{ post.quantity }}</span>
-								<button class="btn" :class="{ 'btn-primary': isInCart(post.id), 'btn-outline-secondary': !isInCart(post.id) }" @click="() => alterInCart(post.id)">
-									<i class="fas fa-shopping-basket" :class="{ 'text-danger': isInCart(post.id), 'text-secondary': !isInCart(post.id) }"></i>
+								<button class="btn" :class="{ 'btn-primary': post.is_ordered_by, 'btn-outline-secondary': !post.is_ordered_by }" @click="() => alterInCart(post.id)">
+									<i class="fas fa-shopping-basket" :class="{ 'text-danger': post.is_ordered_by, 'text-secondary': !post.is_ordered_by }"></i>
 								</button>
 							</div>
 						</div>
@@ -35,8 +35,8 @@
 						</router-link>
 						<div class="d-flex flex-row justify-content-between align-content-center">
 							<span class="post-quantity">In stock: {{ post.quantity }}</span>
-							<button class="btn btn-sm" :class="{ 'btn-primary': isInCart(post.id), 'btn-outline-secondary': !isInCart(post.id) }" @click="() => alterInCart(post.id)">
-								<i class="fas fa-shopping-basket" :class="{ 'text-danger': isInCart(post.id), 'text-secondary': !isInCart(post.id) }"></i>
+							<button class="btn btn-sm" :class="{ 'btn-primary': post.is_ordered_by, 'btn-outline-secondary': !post.is_ordered_by }" @click="() => alterInCart(post.id)">
+								<i class="fas fa-shopping-basket" :class="{ 'text-danger': post.is_ordered_by, 'text-secondary': !post.is_ordered_by }"></i>
 							</button>
 						</div>
 					</div>
@@ -64,8 +64,7 @@
 			...mapActions(['addToCart', 'removeFromCart', 'setIntended']),
 			loadPosts(){
 				let page = this.$route.query.tab ? this.$route.query.tab : 1;
-				console.log()
-				this.$Progress.start(10000);
+				this.$Progress.start();
                 axios.get(this.getRoutes.posts.list + page).then((response)=>{
 					this.posts = response.data;
 					$("body").get(0).scrollIntoView();
@@ -88,15 +87,16 @@
 					this.$router.push('/login');
 					return new toast({ type: 'warning', title: "Login to continue"});
 				}
-				if(this.isInCart(id)){
-					this.removeFromCart(id);
+				var post = this.posts.data.find(post => post.id == id);
+				if(post.is_ordered_by){
+					this.removeFromCart(id).then(id => post.is_ordered_by = false);
 				}else{
-					this.addToCart(id);
+					this.addToCart(id).then(id => post.is_ordered_by = true);
 				}
 			}
 		},
 		computed: {
-			...mapGetters(['getRoutes','isInCart', 'isLoggedIn']),
+			...mapGetters(['getRoutes', 'isLoggedIn']),
 			noPosts(){return this.posts.data ? this.posts.data.length < 1 : false}
 		},
 		mounted(){

@@ -1,36 +1,30 @@
 const state = {
-	auth: {},
-	token: '',
+	user: {},
 	cart: {},
 	store: {}
 }
 
 const getters = {
-	getAuth: state => state.auth,
-	getToken: state => state.token,
+	getAuth: state => state.user,
 	getStore: state => state.store,
-	isLoggedIn: state => !!state.auth.id,
+	isLoggedIn: state => !!state.user.id,
 	getCart: state => state.cart,
 	isInCart: state => id =>
 		state.cart.orders
-			? state.cart.orders.some(order => Number(order.post_id) === id)
+			? state.cart.orders.some(order => order.post_id == id)
 			: false,
 	getOrderIdFromPostId: state => id =>
 		state.cart.orders
-			? state.cart.orders.filter(order => Number(order.post_id) === id)[0]
-				.id
+			? state.cart.orders.find(order => order.post_id == id).id
 			: 0
 }
 
 const actions = {
 	setAuth({ commit }, { data, remember }) {
-		if (remember) {
-			this._vm.$cookies.set('user_profile', data, '0')
-		}
+		remember ? this._vm.$cookies.set('user_profile', data, '0') : 0
 		window.axios.defaults.headers.common['Authorization'] =
 			'Bearer ' + data.token
-		commit('authorized', data.user)
-		commit('oauth', data.token)
+		commit('setUser', data.user)
 		commit('setStore', data.store)
 		commit('setCart', data.cart)
 	},
@@ -40,11 +34,11 @@ const actions = {
 		commit('clearAuth')
 	},
 	addToCart({ getters, commit }, post_id, quantity = 1) {
-		window.axios
+		return window.axios
 			.post(getters.getRoutes.orders.base, { post_id, quantity })
 			.then(response => {
 				commit('addToCart', response.data.data)
-
+				return post_id
 			})
 			.catch(
 				() =>
@@ -53,10 +47,11 @@ const actions = {
 	},
 	removeFromCart({ getters, commit }, post_id) {
 		var id = getters.getOrderIdFromPostId(post_id)
-		window.axios
+		return window.axios
 			.delete(getters.getRoutes.orders.base + id)
 			.then(() => {
 				commit('removeFromCart', id)
+				return post_id
 			})
 			.catch(
 				() =>
@@ -69,17 +64,13 @@ const actions = {
 }
 
 const mutations = {
-	authorized: (state, user) => (state.auth = user),
-	oauth: (state, token) => (state.token = token),
+	setUser: (state, user) => (state.user = user),
 	setStore: (state, store) => (state.cart = store),
 	setCart: (state, cart) => (state.cart = cart),
-	clearAuth: state => {
-		state.auth = state.store = state.cart = {}
-		state.token = ''
-	},
+	clearAuth: state => (state.user = state.store = state.cart = {}),
 	addToCart: (state, order) => state.cart.orders.push(order),
 	removeFromCart: (state, id) =>
-		(state.cart = state.cart.orders.filter(order => order.id !== id))
+		(state.cart.orders = state.cart.orders.filter(order => order.id !== id))
 }
 
 export default {

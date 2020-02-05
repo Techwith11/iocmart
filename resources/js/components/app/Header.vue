@@ -91,7 +91,7 @@
                     confirmButtonText: 'Yes',
                 }).then((result) => {
                     if (result.value) {
-						this.$Progress.start(10000);
+						this.$Progress.start();
                         this.logout();
 						this.$router.push("/login");
 						this.$Progress.finish();

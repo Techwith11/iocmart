@@ -82,7 +82,7 @@
             regUser(){
                 this.disabled = true;
                 this.submitted = true;
-                this.$Progress.start(10000);
+                this.$Progress.start();
                 this.form.post(this.getRoutes.auth.register).then(response=>{
                     this.setAuth({ data: response.data.data, remember: true });
                     this.disabled = false;
