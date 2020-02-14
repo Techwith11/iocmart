@@ -29,7 +29,6 @@
         "sass": "^1.20.1",
         "sass-loader": "7.*",
         "sweetalert2": "^8.13.5",
-        "uglifyjs-webpack-plugin": "^2.2.0",
         "vform": "^1.0.1",
         "vue": "^2.5.17",
         "vue-cookies": "^1.5.13",

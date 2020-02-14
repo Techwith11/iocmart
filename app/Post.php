@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\Http\Filters\RegisterFilters;
-use App\Observers\PostObserver;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Model;
+use App\Observers\PostObserver;
+use App\Http\Filters\RegisterFilters;
 
 class Post extends Model
 {
@@ -16,6 +16,14 @@ class Post extends Model
 	protected $guarded = [];
 
 	protected $appends = ['is_ordered_by'];
+
+	protected $casts = [
+        'discount' => 'integer',
+        'price' => 'integer',
+        'quantity' => 'integer',
+        'store_id' => 'integer',
+        'category_id' => 'integer'
+    ];
 
 	public static function boot(): void
 	{

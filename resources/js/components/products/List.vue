@@ -89,9 +89,9 @@
 				}
 				var post = this.posts.data.find(post => post.id == id);
 				if(post.is_ordered_by){
-					this.removeFromCart(id).then(id => post.is_ordered_by = false);
+					this.removeFromCart(id).then(() => post.is_ordered_by = false);
 				}else{
-					this.addToCart(id).then(id => post.is_ordered_by = true);
+					this.addToCart(id).then(() => post.is_ordered_by = true);
 				}
 			}
 		},

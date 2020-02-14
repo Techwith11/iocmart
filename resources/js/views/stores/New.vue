@@ -1,16 +1,16 @@
 <template>
     <div>
-        <single />
+        <new />
     </div>
 </template>
 
 <script>
-    import Single from "@/components/products/Single";
+    import New from "@/components/stores/New";
 
     export default {
-        name: "ProductSingle",
+        name: "StoreNew",
         components: {
-            "single": Single
+            "new": New
         }
     }
 

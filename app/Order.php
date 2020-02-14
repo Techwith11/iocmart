@@ -2,16 +2,23 @@
 
 namespace App;
 
-use App\Http\Filters\RegisterFilters;
-use App\Observers\OrderObserver;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Model;
+use App\Observers\OrderObserver;
+use App\Http\Filters\RegisterFilters;
 
 class Order extends Model
 {
 	use RegisterFilters;
 
 	protected $guarded = [];
+
+	protected $casts = [
+        'quantity' => 'integer',
+        'cart_id' => 'integer',
+        'post_id' => 'integer',
+        'delivered' => 'integer'
+    ];
 
 	public static function boot(): void
 	{

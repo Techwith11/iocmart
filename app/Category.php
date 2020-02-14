@@ -2,17 +2,21 @@
 
 namespace App;
 
-use App\Http\Filters\RegisterFilters;
-use App\Observers\CategoryObserver;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Model;
+use App\Observers\CategoryObserver;
+use App\Http\Filters\RegisterFilters;
 
 class Category extends Model
 {
 	use RegisterFilters;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'parent_id' => 'integer'
+    ];
 
 	public static function boot(): void
 	{

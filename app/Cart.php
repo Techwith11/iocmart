@@ -2,17 +2,22 @@
 
 namespace App;
 
-use App\Http\Filters\RegisterFilters;
-use App\Observers\CartObserver;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Model;
+use App\Observers\CartObserver;
+use App\Http\Filters\RegisterFilters;
 
 class Cart extends Model
 {
 	use RegisterFilters;
 
 	protected $guarded = [];
+
+	protected $casts = [
+        'user_id' => 'integer',
+        'checked_out' => 'integer'
+    ];
 
 	public static function boot(): void
 	{

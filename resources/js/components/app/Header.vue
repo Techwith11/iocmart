@@ -20,7 +20,7 @@
 				</router-link>
 				<router-link to="/cart" class="top-link">
 					<i class="fas fa-shopping-basket"></i>
-					<span class="d-none d-sm-inline">0 items <span class="price">$0.00</span></span>
+					<span class="d-none d-sm-inline">{{ this.getCartCount }} items <span class="price">&#8358;{{ this.getCartPrice }}</span></span>
 				</router-link>
 				<router-link to="/search" class="top-link">
 					<i class="fas fa-search"></i>
@@ -62,7 +62,7 @@
 						<router-link to="/register" class="nav-link">Register</router-link>
 					</li>
 					<li class="nav-item" v-if="isLoggedIn">
-						<a class="nav-link" @click="logoutUser">Logout</a>
+						<a href="#" class="nav-link" @click.prevent="logoutUser">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -77,7 +77,7 @@
 	export default {
 		name: "Header",
 		computed: {
-			...mapGetters(['isLoggedIn']),
+			...mapGetters(['isLoggedIn','getCartCount','getCartPrice']),
 		},
 		methods: {
 			...mapActions(['logout']),
@@ -95,10 +95,7 @@
                         this.logout();
 						this.$router.push("/login");
 						this.$Progress.finish();
-						new toast({
-							type: 'success',
-							title: 'Logged out successfuly',
-						});
+						new toast({ type: 'success', title: 'Logged out successfuly' });
                     }
                 })
 			}

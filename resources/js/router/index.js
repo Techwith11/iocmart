@@ -14,15 +14,18 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
 	store._vm.$Progress.start()
-	const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-	const onlyWhenLoggedOut = to.matched.some(
-		record => record.meta.onlyWhenLoggedOut
-	)
+	const requiresAuth = to.matched.some(route => route.meta.requiresAuth)
+	const requiresStore = to.matched.some(route => route.meta.requiresStore)
+	const onlyWhenLoggedOut = to.matched.some(route => route.meta.onlyWhenLoggedOut)
 	const cookies = store._vm.$cookies
 	const loggedIn = cookies.hasKey('user_profile')
 	if (requiresAuth && !loggedIn) {
 		store.dispatch('setIntended', to.fullPath)
 		return next('/login')
+	}
+	if (requiresStore & !store.getters.getStore) {
+		new toast({ type: 'warning', title: 'Create a store to proceed!' })
+		return next('/stores/new')
 	}
 	if (loggedIn && onlyWhenLoggedOut) {
 		return next('/')

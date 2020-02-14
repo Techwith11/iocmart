@@ -1,11 +1,8 @@
 function getApiURL() {
-	var url = window.location.origin
-	var domain
+	let url = window.location.origin
+	let domain
 	domain = url.indexOf('://') > -1 ? url.split('/')[2] : url.split('/')[0]
-	domain =
-		domain.indexOf('www.') > -1
-			? domain.replace('www.', '//api.')
-			: '//api.' + domain
+	domain = domain.indexOf('www.') > -1 ? domain.replace('www.', '//api.') : '//api.' + domain
 	return window.location.protocol + domain + '/v1'
 }
 
@@ -14,15 +11,11 @@ const base = getApiURL()
 const state = {
 	routes: {
 		posts: {
-			list:
-				base +
-				'/posts?with=pictures,store&where=quantity&op=>&value=0&order_by=created_at&order=desc&page=',
+			list: base + '/posts?with=pictures,store&where=quantity&op=>&value=0&order_by=created_at&order=desc&page=',
 			base: base + '/posts/'
 		},
 		categories: {
-			parents:
-				base +
-				'/categories?with=subs&where=parent_id&value=0&limit=50&select=id,name',
+			parents: base + '/categories?with=subs&where=parent_id&value=0&limit=50&select=id,name',
 			base: base + '/categories/'
 		},
 		carts: {
@@ -30,6 +23,9 @@ const state = {
 		},
 		orders: {
 			base: base + '/orders/'
+		},
+		stores: {
+			base: base + '/stores/'
 		},
 		auth: {
 			profile: base + '/user',

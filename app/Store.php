@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\Http\Filters\RegisterFilters;
-use App\Observers\StoreObserver;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Model;
+use App\Observers\StoreObserver;
+use App\Http\Filters\RegisterFilters;
 
 class Store extends Model
 {
@@ -17,7 +17,8 @@ class Store extends Model
 
 	protected $casts = [
 		'email_verified_at' => 'datetime',
-		'phone' => 'object',
+        'phone' => 'object',
+        'user_id'=> 'integer'
 	];
 
 	public static function boot(): void

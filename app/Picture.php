@@ -2,16 +2,20 @@
 
 namespace App;
 
-use App\Http\Filters\RegisterFilters;
-use App\Observers\PictureObserver;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Model;
+use App\Observers\PictureObserver;
+use App\Http\Filters\RegisterFilters;
 
 class Picture extends Model
 {
 	use RegisterFilters;
 
-    protected $guarded = [];
+	protected $guarded = [];
+
+	protected $casts = [
+        'imageable_id' => 'integer'
+    ];
 
 	public static function boot(): void
 	{

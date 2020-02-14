@@ -3,20 +3,20 @@ module.exports = {
 		browser: true,
 		es6: true
 	},
-	extends: ["eslint:recommended", "plugin:vue/essential"],
+	extends: ['eslint:recommended', 'plugin:vue/essential'],
 	globals: {
-		Atomics: "readonly",
-		SharedArrayBuffer: "readonly"
+		Atomics: 'readonly',
+		SharedArrayBuffer: 'readonly'
 	},
 	parserOptions: {
 		ecmaVersion: 2018,
-		sourceType: "module"
+		sourceType: 'module'
 	},
-	plugins: ["vue"],
+	plugins: ['vue'],
 	rules: {
-		indent: ["warn", "tab"],
-		"linebreak-style": ["warn", "windows"],
-		quotes: ["warn", "single"],
-		semi: ["warn", "never"]
+		'indent': ['warn', 'tab'],
+		'linebreak-style': ['warn', 'windows'],
+		'quotes': ['warn', 'single'],
+		'semi': ['warn', 'never']
 	}
-};
+}

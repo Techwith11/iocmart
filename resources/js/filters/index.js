@@ -1,10 +1,8 @@
 import Vue from 'vue'
 
 Vue.filter('naira', function(price) {
-	return price + '.00'
+	return Number(price).toFixed(2)
 })
 Vue.filter('discount', function(price, discount) {
-	return discount
-		? Number((1 - discount / 100) * price).toFixed(2)
-		: Number(price).toFixed(2)
+	return discount ? Number((1 - discount / 100) * price).toFixed(2) : Number(price).toFixed(2)
 })

@@ -10,5 +10,9 @@
     "/js/product-new.bundle.js": "/js/product-new.bundle.js",
     "/js/product-single.bundle.js": "/js/product-single.bundle.js",
     "/js/profile.bundle.js": "/js/profile.bundle.js",
-    "/js/register.bundle.js": "/js/register.bundle.js"
+    "/js/register.bundle.js": "/js/register.bundle.js",
+    "/js/store.bundle.js": "/js/store.bundle.js",
+    "/js/store-index.bundle.js": "/js/store-index.bundle.js",
+    "/js/store-new.bundle.js": "/js/store-new.bundle.js",
+    "/js/store-single.bundle.js": "/js/store-single.bundle.js"
 }

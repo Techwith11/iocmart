@@ -5,10 +5,10 @@
 </template>
 
 <script>
-    import Single from "@/components/products/Single";
+    import Single from "@/components/stores/Single";
 
     export default {
-        name: "ProductSingle",
+        name: "StoreSingle",
         components: {
             "single": Single
         }
