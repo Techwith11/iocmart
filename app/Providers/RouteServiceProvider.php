@@ -24,23 +24,27 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes(): void
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     protected function mapApiRoutes(): void
     {
-    	Route::domain(env('API_URL'))
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+        Route::domain(env('API_URL'))
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 
     protected function mapAdminRoutes(): void
     {
-    	Route::domain(env('ADMIN_URL'))
-			->middleware('admin')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/admin.php'));
+        Route::domain(env('ADMIN_URL'))
+            ->middleware('admin')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin.php'));
     }
 }
