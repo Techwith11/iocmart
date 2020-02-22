@@ -11,7 +11,7 @@
 							<router-link :to="'/products/' + post.id" class="link">
 								<img :src="getFeaturedImage(post)" alt="Featured Image" class="w-100">
 								<p class="post-name pt-3">{{ post.name }}</p>
-								<p class="post-price">&#8358;{{ post.price | discount(post.discount) }}<span v-if="post.discount" class="post-discount">&#8358;{{ post.price | discount }}</span></p>
+								<p class="post-price"><span v-html="getSymbol"></span>{{ post.price | discount(post.discount) }}<span v-if="post.discount" class="post-discount">&#8358;{{ post.price | discount }}</span></p>
 							</router-link>
 							<div class="d-flex flex-row justify-content-between align-content-center">
 								<span class="post-quantity">In stock: {{ post.quantity }}</span>
@@ -31,7 +31,7 @@
 					<div class="col-8 pl-2">
 						<router-link :to="'/products/' + post.id" class="link">
 							<p class="post-name">{{ post.name }}</p>
-							<p class="post-price">&#8358;{{ post.price | discount(post.discount) }}<span v-if="post.discount" class="post-discount">&#8358;{{ post.price | discount }}</span></p>
+							<p class="post-price"><span v-html="getSymbol"></span>{{ post.price | discount(post.discount) }}<span v-if="post.discount" class="post-discount">&#8358;{{ post.price | discount }}</span></p>
 						</router-link>
 						<div class="d-flex flex-row justify-content-between align-content-center">
 							<span class="post-quantity">In stock: {{ post.quantity }}</span>
@@ -91,12 +91,12 @@
 				if(post.is_ordered_by){
 					this.removeFromCart(id).then(() => post.is_ordered_by = false);
 				}else{
-					this.addToCart(id).then(() => post.is_ordered_by = true);
+					this.addToCart({post_id: id}).then(() => post.is_ordered_by = true);
 				}
 			}
 		},
 		computed: {
-			...mapGetters(['getRoutes', 'isLoggedIn']),
+			...mapGetters(['getRoutes', 'isLoggedIn','getSymbol']),
 			noPosts(){return this.posts.data ? this.posts.data.length < 1 : false}
 		},
 		mounted(){

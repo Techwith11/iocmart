@@ -13,6 +13,7 @@
 		height: 100vh;
 		left: 0;
 		top: 0;
+		z-index: 1000;
 	}
 	#loader{
 		width: 5rem;

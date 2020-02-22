@@ -10,6 +10,7 @@ const getters = {
 	isLoggedIn: state => !!state.user.id,
 	getCart: state => state.cart,
 	isInCart: state => id => (state.cart.orders ? state.cart.orders.some(order => order.post_id === id) : false),
+	getOrderFromPostId: state => id => (state.cart.orders ? state.cart.orders.find(order => order.post_id === id) : {}),
 	getOrderIdFromPostId: state => id => (state.cart.orders ? state.cart.orders.find(order => order.post_id === id).id : 0),
 	getCartCount: state => {
 		let total = 0
@@ -36,9 +37,10 @@ const actions = {
 		window.axios.defaults.headers.common['Authorization'] = undefined
 		commit('clearAuth')
 	},
-	addToCart({ getters, commit }, post_id, quantity = 1) {
+	addToCart({ getters, commit }, {post_id, quantity}) {
+		console.log(quantity)
 		return window.axios
-			.post(getters.getRoutes.orders.base, { post_id, quantity })
+			.post(getters.getRoutes.orders.base, { post_id, quantity: quantity ? quantity : 1 })
 			.then(response => {
 				commit('addToCart', response.data.data)
 				new toast({ type: 'success', title: 'Added to cart' })
@@ -67,6 +69,13 @@ const actions = {
 			.then(() => commit('reduceQuantity', id))
 			.catch(() => new toast({ type: 'error', title: 'Error reducing quantity' }))
 	},
+	changeQuantity({ getters, commit }, post_id, quantity) {
+		let id = getters.getOrderIdFromPostId(post_id)
+		return window.axios
+			.put(getters.getRoutes.orders.base + id, { quantity })
+			.then(() => commit('changeQuantity', id, quantity))
+			.catch(() => new toast({ type: 'error', title: 'Error changing quantity' }))
+	},
 	deleteOrder({ getters, commit }, id) {
 		return window.axios
 			.delete(getters.getRoutes.orders.base + id)
@@ -93,7 +102,8 @@ const mutations = {
 	addToCart: (state, order) => state.cart.orders.push(order),
 	removeFromCart: (state, id) => (state.cart.orders = state.cart.orders.filter(order => order.id !== id)),
 	increaseQuantity: (state, id) => (state.cart.orders.find(order => order.id === id).quantity += 1),
-	reduceQuantity: (state, id) => (state.cart.orders.find(order => order.id === id).quantity -= 1)
+	reduceQuantity: (state, id) => (state.cart.orders.find(order => order.id === id).quantity -= 1),
+	changeQuantity: (state, id, quantity) => (state.cart.orders.find(order => order.id === id).quantity = quantity)
 }
 
 export default {

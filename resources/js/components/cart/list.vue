@@ -15,7 +15,7 @@
 				<td>
 					<button class="btn btn-sm btn-primary mr-2" @click="() => reduceQuantity(order)" :disabled="order.quantity <= 1">-</button>
 					{{ order.quantity }}
-					<button class="btn btn-sm btn-primary ml-2" @click="() => increaseQuantity(order)">+</button>
+					<button class="btn btn-sm btn-primary ml-2" @click="() => increaseQuantity(order)" :disabled="order.quantity >= order.post.quantity">+</button>
 				</td>
 				<td>{{ order.quantity * order.post.price }}</td>
 			</tr>
@@ -31,8 +31,8 @@
 			</div>
 			<div class="col-md-6">
 				<p><span>Subtotal</span><span>{{ getCartPrice }}</span></p>
-				<p><span>Shipping fee</span><span>{{ voucherPrice }}</span></p>
-				<p><span>Coupon</span><span>0</span></p>
+				<p><span>Delivery fee</span><span>0</span></p>
+				<p><span>Coupon</span><span>{{ voucherPrice }}</span></p>
 				<hr>
 				<p><span>TOTAL</span><span>{{ getTotal }}</span></p>
 				<button class="btn btn-primary w-100" @click="checkoutCart">Check out</button>

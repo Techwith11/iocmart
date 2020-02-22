@@ -3,10 +3,10 @@
 		<div class="container d-flex flex-row justify-content-between mt-1" id="topbar">
 			<div class="d-flex flex-row">
 				<select>
-					<option>EN</option>
+					<option v-for="language in getLanguages">{{ language }}</option>
 				</select>
 				<select>
-					<option>NGN</option>
+					<option v-for="currency in getCurrencies">{{ currency }}</option>
 				</select>
 			</div>
 			<div class="d-flex flex-row">
@@ -77,7 +77,7 @@
 	export default {
 		name: "Header",
 		computed: {
-			...mapGetters(['isLoggedIn','getCartCount','getCartPrice']),
+			...mapGetters(['isLoggedIn','getCartCount','getCartPrice','getLanguages','getCurrencies']),
 		},
 		methods: {
 			...mapActions(['logout']),
