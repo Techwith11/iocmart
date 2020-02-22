@@ -79,7 +79,7 @@
 				this.loadPosts();
 			},
 			getFeaturedImage(post){
-				return post.pictures.length > 0 ? post.pictures[0].filename : window.location.origin + "/images/post-sample.png"
+				return post.pictures.length > 0 ? post.pictures[0].uri : '/images/post-sample.png'
 			},
 			alterInCart(id){
 				if(!this.isLoggedIn){
@@ -87,7 +87,7 @@
 					this.$router.push('/login');
 					return new toast({ type: 'warning', title: "Login to continue"});
 				}
-				var post = this.posts.data.find(post => post.id == id);
+				var post = this.posts.data.find(post => post.id === id);
 				if(post.is_ordered_by){
 					this.removeFromCart(id).then(() => post.is_ordered_by = false);
 				}else{

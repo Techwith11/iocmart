@@ -13,6 +13,12 @@ class Picture extends Model
 
 	protected $guarded = [];
 
+    protected $appends = ['uri'];
+
+    protected $hidden = [
+        'filename'
+    ];
+
 	protected $casts = [
         'imageable_id' => 'integer'
     ];
@@ -26,5 +32,10 @@ class Picture extends Model
     public function imageable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function getUriAttribute(): string
+    {
+        return url('/').'/'.$this->filename;
     }
 }

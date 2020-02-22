@@ -9,9 +9,10 @@ class HandleMultipleImagesListener
 {
     public function handle(NewSingleImageUploadedEvent $event): void
     {
-    	$event->params['images']->each(static function($image){
+    	$event->params['images']->each(static function($image) use ($event) {
 			$object = $event->params['object'];
-			$path = $event->params['path'];
+            $type = $event->params['type'];
+            $path = 'images/'.$type.'/';
 			$name = time().'.'.explode('/',explode(':',substr($image,0,
 					strpos($image,';')))[1])[1];
 			Image::make($image)->save(public_path($path).$name);

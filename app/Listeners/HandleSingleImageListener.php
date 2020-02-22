@@ -11,7 +11,8 @@ class HandleSingleImageListener
     {
         $image = $event->params['image'];
         $object = $event->params['object'];
-        $path = $event->params['path'];
+        $type = $event->params['type'];
+        $path = 'images/'.$type.'/';
 		$name = time().'.'.explode('/',explode(':',substr($image,0,
 				strpos($image,';')))[1])[1];
 		Image::make($image)->save(public_path($path).$name);

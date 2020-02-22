@@ -36,7 +36,7 @@ class PostsController extends Controller
 			$params = [
 				'images' => $request->images,
 				'object' => $post,
-				'path' => 'images/posts/'
+				'type' => 'posts'
 			];
 			event(new NewMultipleImagesUploadedEvent($params));
         }

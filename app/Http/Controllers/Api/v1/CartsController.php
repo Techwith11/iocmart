@@ -46,6 +46,14 @@ class CartsController extends Controller
 		return new CartsResource($cart);
     }
 
+    public function checkout(Cart $cart): CartsResource
+    {
+        $this->authorize('update', $cart);
+        $cart->checked_out = 1;
+        $cart->save();
+        return new CartsResource(auth('api')->user()->currentCart);
+    }
+
     public function destroy(Cart $cart): JsonResponse
     {
 		$this->authorize('delete', $cart);

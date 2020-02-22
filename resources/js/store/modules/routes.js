@@ -19,7 +19,8 @@ const state = {
 			base: base + '/categories/'
 		},
 		carts: {
-			base: base + '/carts/'
+			base: base + '/carts/',
+			checkout: base + '/carts/checkout/'
 		},
 		orders: {
 			base: base + '/orders/'

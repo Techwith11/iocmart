@@ -61,6 +61,6 @@ class User extends Authenticatable
 
 	public function getCurrentCartAttribute(): Model
 	{
-		return $this->carts()->notCheckedOut()->latest()->with(['orders.post'])->first() ?: $this->carts()->create([]);
+		return $this->carts()->notCheckedOut()->latest()->with(['orders.post.pictures'])->first() ?: $this->carts()->create([]);
 	}
 }

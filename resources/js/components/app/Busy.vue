@@ -1,6 +1,6 @@
 <template>
-	<div id="loader-bg" class="d-flex flex-column justify-content-center text-center">
-		<span><i class="fas fa-spinner fa-spin text-primary fa-5x"></i></span>
+	<div id="loader-bg" class="d-flex flex-column justify-content-center align-items-center">
+		<div class="spinner-border text-info" id='loader' role="status"></div>
 	</div>
 </template>
 
@@ -13,5 +13,9 @@
 		height: 100vh;
 		left: 0;
 		top: 0;
+	}
+	#loader{
+		width: 5rem;
+		height: 5rem;
 	}
 </style>

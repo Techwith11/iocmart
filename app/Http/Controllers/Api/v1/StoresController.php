@@ -49,7 +49,7 @@ class StoresController extends Controller
 		$params = [
 			'image' => $request->image,
 			'object' => $store,
-			'path' => 'images/stores/'
+			'type' => 'stores'
 		];
 		event(new NewSingleImageUploadedEvent($params));
 		return response()->json(['data' => 'true']);

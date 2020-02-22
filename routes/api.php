@@ -10,8 +10,9 @@ Route::prefix('/v1')->middleware('cors')->group(static function () {
 	Route::post('login', 'Api\\v1\\AuthController@login');
 	Route::post('register', 'Api\\v1\\AuthController@register');
 
-	Route::post('users/{user}/profile', 'Api\\v1\\UsersController@profile');
-	Route::post('stores/{store}/logo', 'Api\\v1\\StoresController@logo');
+	Route::post('users/profile/{user}', 'Api\\v1\\UsersController@profile');
+	Route::post('stores/logo/{store}', 'Api\\v1\\StoresController@logo');
+	Route::post('carts/checkout/{cart}', 'Api\\v1\\CartsController@checkout');
 
 	Route::apiResources([
 		'carts' => 'Api\\v1\\CartsController',

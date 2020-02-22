@@ -43,7 +43,7 @@ class UsersController extends Controller
 		$params = [
 			'image' => $request->image,
 			'object' => $user,
-			'path' => 'images/users/'
+			'type' => 'users'
 		];
 		event(new NewSingleImageUploadedEvent($params));
 		return response()->json(['data' => 'true']);

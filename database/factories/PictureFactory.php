@@ -8,6 +8,6 @@ $factory->define(App\Picture::class, static function (Faker $faker) {
     return [
         'imageable_type' => $faker->randomElement(['App\User','App\Store','App\Post']),
         'imageable_id' => $faker->numberBetween(1,20),
-        'filename' => 'img/'.time().'.png'
+        'filename' => 'images/'.time().'.png'
     ];
 });

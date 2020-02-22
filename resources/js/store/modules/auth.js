@@ -39,14 +39,20 @@ const actions = {
 	addToCart({ getters, commit }, post_id, quantity = 1) {
 		return window.axios
 			.post(getters.getRoutes.orders.base, { post_id, quantity })
-			.then(response => commit('addToCart', response.data.data))
+			.then(response => {
+				commit('addToCart', response.data.data)
+				new toast({ type: 'success', title: 'Added to cart' })
+			})
 			.catch(() => new toast({ type: 'error', title: 'Error adding to cart' }))
 	},
 	removeFromCart({ getters, commit }, post_id) {
 		let id = getters.getOrderIdFromPostId(post_id)
 		return window.axios
 			.delete(getters.getRoutes.orders.base + id)
-			.then(() => commit('removeFromCart', id))
+			.then(() => {
+				commit('removeFromCart', id)
+				new toast({ type: 'success', title: 'Removed from cart' })
+			})
 			.catch(() => new toast({ type: 'error', title: 'Error removing from cart' }))
 	},
 	increaseQuantity({ getters, commit }, { id, quantity }) {
@@ -65,7 +71,17 @@ const actions = {
 		return window.axios
 			.delete(getters.getRoutes.orders.base + id)
 			.then(() => commit('removeFromCart', id))
-			.catch(() => new toast({ type: 'error', title: 'Error deleting order' }))
+			.catch(() => new window.toast({ type: 'error', title: 'Error deleting order' }))
+	},
+	checkoutCart({ getters, commit}){
+		return window.axios.post(getters.getRoutes.carts.checkout + getters.getCart.id)
+			.then(res => {
+				commit('setCart',res.data.data)
+				new toast({ type: 'success', title:'Checked out successfully'})
+			})
+			.catch(err => {
+				new toast({ type: 'error', title:'Error checking out'})
+			})
 	}
 }
 

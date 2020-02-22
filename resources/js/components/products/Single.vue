@@ -1,12 +1,11 @@
 <template>
     <div>
-        <h1>{{ post }}</h1>
+        <p>{{ post }}</p>
     </div>
 </template>
 
 <script>
     import { mapGetters } from "vuex";
-
     export default {
         name: "SingleProduct",
         data(){
