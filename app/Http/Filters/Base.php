@@ -26,29 +26,33 @@ abstract class Base
 
 	protected function verifyRequestField($value): string
 	{
-		return collect(self::allowedFields)->contains($value) ? $value : '';
+	    return $value;
+		//return collect(self::allowedFields)->contains($value) ? $value : '';
 	}
 
 	protected function verifyRequestFields($values): Collection
 	{
-		return collect($values)->filter(static function($val){
+	    return collect($values);
+		/*return collect($values)->filter(static function($val){
 			return collect(self::allowedFields)->contains($val);
-		});
+		});*/
 	}
 
 	protected const allowedFields = [
 		/* generic fields */ 'id', 'created_at', 'updated_at',
 		/* user fields */ 'name', 'email', 'email_verified_at', 'phone', 'phone.phone_country', 'phone.phone', 'role',
-		/* user relations */ 'store', 'orders', 'picture',
+		/* user relations */ 'store', 'carts', 'picture',
 		/* post fields */ 'description', 'price', 'quantity', 'store_id', 'category_id', 'discount',
 		/* post relations */'store', 'category', 'pictures', 'orders',
 		/* store fields */ 'link', 'user_id', 'picture',
 		/* store relations */'user', 'posts',
 		/* picture fields */ 'imageable_type', 'imageable_type', 'filename',
 		/* picture relations */ 'imageable',
-		/* order fields */ 'post_id', 'delivered',
-		/* order relations */'user', 'post',
+		/* order fields */ 'post_id', 'cart_id',
+		/* order relations */'cart', 'post', 'delivered',
 		/* category fields */ 'parent_id',
 		/* category relations */ 'subs', 'parent',
+        /* cart fields */  'checked_out',
+        /* cart relations */ 'orders', 'user'
 	];
 }

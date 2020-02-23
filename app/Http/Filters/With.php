@@ -8,8 +8,7 @@ class With extends Base
 {
 	protected function applyFilter($builder)
 	{
-		$requests = explode(',',request($this->name()));
-		$relations = $this->verifyRequestFields($requests);
+	    $relations = $this->verifyRequestFields(request($this->name()));
 		return $builder->with(...$relations);
 	}
 }

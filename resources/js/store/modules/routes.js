@@ -11,11 +11,11 @@ const base = getApiURL()
 const state = {
 	routes: {
 		posts: {
-			list: base + '/posts?with=pictures,store&where=quantity&op=>&value=0&order_by=created_at&order=desc&page=',
+			list: base + '/posts?with[]=pictures&with[]=store&where=quantity&op=>&value=0&order_by=updated_at&order=desc&page=',
 			base: base + '/posts/'
 		},
 		categories: {
-			parents: base + '/categories?with=subs&where=parent_id&value=0&limit=50&select=id,name',
+			parents: base + '/categories?with[]=subs&where=parent_id&value=0&limit=50&select=id,name',
 			base: base + '/categories/'
 		},
 		carts: {

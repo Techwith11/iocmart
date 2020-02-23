@@ -10,7 +10,6 @@ $factory->define(Order::class, static function (Faker $faker) {
     return [
 		'post_id' => $faker->numberBetween(1, 150),
 		'cart_id' => $faker->numberBetween(1,30),
-		'quantity' => $faker->numberBetween(1, 5),
-		'delivered' => 0
+		'quantity' => $faker->numberBetween(1, 5)
     ];
 });

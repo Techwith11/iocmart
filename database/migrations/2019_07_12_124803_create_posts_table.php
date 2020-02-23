@@ -13,6 +13,7 @@ class CreatePostsTable extends Migration
             $table->string('name');
             $table->longText('description')->nullable();
             $table->bigInteger('price')->nullable();
+            $table->integer('discount')->default(0);
             $table->integer('quantity')->unsigned();
             $table->integer('store_id')->unsigned();
             $table->integer('category_id')->unsigned();

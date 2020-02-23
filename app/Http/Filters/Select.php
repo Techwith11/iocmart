@@ -6,8 +6,7 @@ class Select extends Base
 {
 	protected function applyFilter($builder)
 	{
-		$requests = explode(',',request($this->name()));
-		$columns = $this->verifyRequestFields($requests)->toArray();
+		$columns = $this->verifyRequestFields(request($this->name()))->toArray();
 		return $builder->distinct()->select($columns);
 	}
 }

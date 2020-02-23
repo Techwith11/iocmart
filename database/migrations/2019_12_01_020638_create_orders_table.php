@@ -13,7 +13,6 @@ class CreateOrdersTable extends Migration
 			$table->integer('cart_id')->unsigned();
 			$table->integer('post_id')->unsigned();
 			$table->integer('quantity')->unsigned();
-			$table->integer('delivered')->unsigned()->default(0);
             $table->timestamps();
         });
     }

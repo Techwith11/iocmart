@@ -17,6 +17,7 @@ class CreateCartsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->integer('user_id');
+            $table->integer('delivered')->unsigned()->default(0);
             $table->integer('checked_out')->unsigned()->default(0);
         });
     }
