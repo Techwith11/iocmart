@@ -13,7 +13,6 @@
 /storage/logs/
 .env
 .env.backup
-composer.lock
 package-lock.json
 .phpunit.result.cache
 Homestead.json
