@@ -22,11 +22,7 @@ class DatabaseSeeder extends Seeder
             $canvas->text($id,$canvas->getWidth()/2,$canvas->getHeight()/2,static function($font){
                 $font->size(500);
             });
-            if(env('APP_ENV') === 'production'){
-                Storage::disk('s3')->put($path,$canvas->encode(),'public');
-            }else{
-                Storage::disk('public')->put($path,$canvas->encode());
-            }
+            Storage::disk(env('APP_ENV') === 'production' ? 's3' : 'public')->put($path,$canvas->encode(),'public');
         }
         factory(User::class,20)->create()->each(static function($user){
 			$name = $user->id.'.jpg';

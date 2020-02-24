@@ -16,7 +16,7 @@ class PictureObserver
     {
         if($picture->isDirty('filename')){
             $filename = $picture->getOriginal('filename');
-            xv0Storage::disk(env('APP_ENV') === 'production' ? 's3' : 'public')->delete($filename);
+            Storage::disk(env('APP_ENV') === 'production' ? 's3' : 'public')->delete($filename);
         }
     }
 

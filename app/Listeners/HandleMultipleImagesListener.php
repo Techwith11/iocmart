@@ -16,11 +16,9 @@ class HandleMultipleImagesListener
             $path = 'images/'.$type.'/';
 			$name = time().'.'.explode('/',explode(':',substr($image,0,
 				strpos($image,';')))[1])[1];
-			if(env('APP_ENV') === 'production'){
-				Storage::disk('s3')->put($path.$name,Image::make($image)->encode(),'public');
-			}else{
-				Storage::disk('public')->put($path.$name,Image::make($image)->encode());
-			}
+			Storage::disk(env('APP_ENV') === 'production' ? 's3' : 'public')->put(
+				$path.$name, Image::make($image)->encode(), 'public'
+			);
 			$object->pictures->push(['filename' => $path.$name]);
 		});
     }
