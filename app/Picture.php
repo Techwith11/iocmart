@@ -36,6 +36,6 @@ class Picture extends Model
 
     public function getUriAttribute(): string
     {
-        return url('/').'/'.$this->filename;
+        return url('/storage/').'/'.$this->filename;
     }
 }

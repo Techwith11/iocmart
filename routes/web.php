@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 Route::get('/{path}', static function(){
-	// TODO: Replace welcome view with home view when frontend is implemented
-    return view('home');
+	return view('home');
 })->where('path','([A-z\d\/_.\\s]+)?');
 
 Route::match(

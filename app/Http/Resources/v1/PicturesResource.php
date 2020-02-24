@@ -10,7 +10,7 @@ class PicturesResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'filename' => $this->filename,
+            'uri' => $this->uri,
             'imageable' => $this->imageable,
             'imageable_type' => $this->imageable_type,
 			'created_at' => $this->created_at,

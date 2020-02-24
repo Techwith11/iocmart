@@ -2,8 +2,8 @@
 
 namespace App\Listeners;
 
-use App\Events\NewSingleImageUploadedEvent;
 use Intervention\Image\Facades\Image;
+use App\Events\NewSingleImageUploadedEvent;
 
 class HandleSingleImageListener
 {
@@ -14,8 +14,12 @@ class HandleSingleImageListener
         $type = $event->params['type'];
         $path = 'images/'.$type.'/';
 		$name = time().'.'.explode('/',explode(':',substr($image,0,
-				strpos($image,';')))[1])[1];
-		Image::make($image)->save(public_path($path).$name);
+			strpos($image,';')))[1])[1];
+		if(env('APP_ENV') === 'production'){
+			Storage::disk('s3')->put($path.$name,Image::make($image)->encode());
+		}else{
+			Storage::disk('public')->put($path.$name,Image::make($image)->encode());
+		}
 		if($object->picture){
 			$object->picture->update(['filename' => $path.$name]);
 		}else{

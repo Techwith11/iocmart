@@ -1,6 +1,7 @@
 <?php
 
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Store;
@@ -21,21 +22,21 @@ class DatabaseSeeder extends Seeder
             $canvas->text($id,$canvas->getWidth()/2,$canvas->getHeight()/2,static function($font){
                 $font->size(500);
             });
-            $canvas->save($path);
+            Storage::disk('public')->put($path,$canvas->encode());
         }
         factory(User::class,20)->create()->each(static function($user){
 			$name = $user->id.'.jpg';
-			drawImage($user->id,public_path('images/users/').$name);
+			drawImage($user->id,'images/users/'.$name);
             $user->picture()->create([ 'filename' => 'images/users/'.$name ]);
         });
         factory(Store::class,20)->create()->each(static function($store){
 			$name = $store->id.'.jpg';
-            drawImage($store->id,public_path('images/stores/').$name);
+            drawImage($store->id,'images/stores/'.$name);
             $store->picture()->create([ 'filename' => 'images/stores/'.$name ]);
         });
         factory(Post::class,150)->create()->each(static function($post){
             $name = $post->id.'.jpg';
-            drawImage($post->id,public_path('images/posts/').$name);
+            drawImage($post->id,'images/posts/'.$name);
             $post->pictures()->create([ 'filename' => 'images/posts/'.$name ]);
         });
         factory(Cart::class,30)->create();
