@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Model;
 use App\Observers\PictureObserver;
@@ -36,6 +37,6 @@ class Picture extends Model
 
     public function getUriAttribute(): string
     {
-        return (env('APP_ENV') === 'production' ? env('AWS_URL') : url('/storage/')).'/'.$this->filename;
+        return env('APP_ENV') === 'production' ?  Storage::disk('public')->url($this->filename) : url('/storage').'/'.$this->filename;
     }
 }
