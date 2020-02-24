@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Picture;
 
 class PictureObserver
@@ -15,9 +16,7 @@ class PictureObserver
     {
         if($picture->isDirty('filename')){
             $filename = $picture->getOriginal('filename');
-            if(file_exists(public_path($filename))){
-                @unlink(public_path($filename));
-            }
+            xv0Storage::disk(env('APP_ENV') === 'production' ? 's3' : 'public')->delete($filename);
         }
     }
 
@@ -29,9 +28,7 @@ class PictureObserver
     public function deleting(Picture $picture): void
     {
         $filename = $picture->filename;
-        if(file_exists(public_path($filename))){
-            @unlink(public_path($filename));
-        }
+        Storage::disk(env('APP_ENV') === 'production' ? 's3' : 'public')->delete($filename);
     }
 
     public function restored(Picture $picture): void
