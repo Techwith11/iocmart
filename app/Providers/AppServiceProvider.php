@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
 	{
 		$this->app->bind('path.public', static function(){
-            return base_path().DIRECTORY_SEPARATOR.'public';
+            return env('APP_ENV') === 'production' ? DIRECTORY_SEPARATOR.'public' : base_path().DIRECTORY_SEPARATOR.'public';
         });
     }
 }
