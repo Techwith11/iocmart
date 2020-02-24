@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
                 $font->size(500);
             });
             if(env('APP_ENV') === 'production'){
-                Storage::disk('s3')->put($path,$canvas->encode());
+                Storage::disk('s3')->put($path,$canvas->encode(),'public');
             }else{
                 Storage::disk('public')->put($path,$canvas->encode());
             }
