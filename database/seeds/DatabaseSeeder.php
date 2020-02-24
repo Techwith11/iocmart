@@ -1,25 +1,17 @@
 <?php
 
-use App\Cart;
-use App\Category;
-use App\Order;
-use App\Picture;
-use App\Post;
-use App\Store;
-use App\User;
-use Illuminate\Database\Seeder;
 use Intervention\Image\Facades\Image;
+use Illuminate\Database\Seeder;
+use App\User;
+use App\Store;
+use App\Post;
+use App\Picture;
+use App\Order;
+use App\Category;
+use App\Cart;
 
 class DatabaseSeeder extends Seeder
 {
-    public function drawImage($id,$path): void
-    {
-        $canvas = Image::canvas(300,300);
-        $canvas->text($id,$canvas->getWidth()/2,$canvas->getHeight()/2,static function($font){
-            $font->size(100);
-        });
-        $canvas->save($path);
-    }
     public function run(): void
     {
         function drawImage($id,$path): void
