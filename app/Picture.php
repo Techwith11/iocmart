@@ -37,6 +37,6 @@ class Picture extends Model
 
     public function getUriAttribute(): string
     {
-        return (env('APP_ENV') === 'production' ?  env('AWS_URL') : url('/storage').'/').$this->filename;
+        return Storage::disk(env('APP_ENV') === 'production' ? 's3' : 'public')->url($this->filename);
     }
 }
