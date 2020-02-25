@@ -3,10 +3,6 @@
 /public/hot
 /public/storage
 /vendor
-/public/fonts/
-/public/images/users/
-/public/images/stores/
-/public/images/posts/
 /database/database.sqlite
 /storage/app/
 /storage/framework/
