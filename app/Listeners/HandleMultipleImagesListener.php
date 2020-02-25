@@ -14,8 +14,7 @@ class HandleMultipleImagesListener
 			$object = $event->params['object'];
             $type = $event->params['type'];
             $path = 'images/'.$type.'/';
-			$name = time().'.'.explode('/',explode(':',substr($image,0,
-				strpos($image,';')))[1])[1];
+			$name = time().'_'.$image->getClientOriginalName();
 			Storage::disk(env('APP_ENV') === 'production' ? 's3' : 'public')->put(
 				$path.$name, Image::make($image)->encode(), 'public'
 			);
