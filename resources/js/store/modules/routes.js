@@ -15,7 +15,7 @@ const state = {
 			base: base + '/posts/'
 		},
 		categories: {
-			parents: base + '/categories?with[]=subs&where=parent_id&value=0&limit=50&select=id,name',
+			parents: base + '/categories?with[]=subs&where=parent_id&value=0&limit=50&select[]=id&select[]=name',
 			base: base + '/categories/'
 		},
 		carts: {

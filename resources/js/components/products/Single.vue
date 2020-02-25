@@ -9,11 +9,11 @@
             </div>
         </div>
         <div class="col-md-8">
-            <h3>{{ post.name }}</h3>
+            <h3 class="post_name">{{ post.name }}</h3>
             <hr>
-            <h5><span v-html="getSymbol"></span>{{ post.price | discount(post.discount) }} <span v-if="post.discount"><span v-html="getSymbol"></span>{{ post.price | discount }}</span></h5>
-            <h5>Available in stock: {{ post.quantity }}</h5>
-            <h5>Category: {{ post.category ? post.category.name : null }}</h5>
+            <h5 class="post_price"><span v-html="getSymbol"></span>{{ post.price | discount(post.discount) }} <span v-if="post.discount" class="post_discount"><span v-html="getSymbol"></span>{{ post.price | discount }}</span></h5>
+            <h5><span class="bold">Available in stock: </span><span class="lighter">{{ post.quantity }}</span></h5>
+            <h5><span class="bold">Category: </span><span class="lighter">{{ post.category ? post.category.name : null }}</span></h5>
             <h5>{{ post.description }}</h5>
             <hr>
             <div class="d-flex justify-content-between">
@@ -26,6 +26,14 @@
                     <button class="btn btn-info mr-2" @click="makeOrder" :disabled="shouldDisable">{{ post.is_ordered_by ? 'Change Quantity' : 'Add To Cart'}} <i class="fas fa-shopping-basket d-none d-sm-inline"></i></button>
                     <button class="btn btn-outline-danger btn-sm" v-if="post.is_ordered_by" @click="deleteOrder">Remove <i class="fas fa-trash d-none d-sm-inline"></i></button>
                 </div>
+            </div>
+        </div>
+        <div class="col-12 mt-4 mb-3" v-if="post.store">
+            <h5 class="lead text-primary">Store Information</h5>
+            <span class="text-uppercase font-weight-bold">{{post.store.name}}</span>
+            <div class="d-flex justify-content-between flex-column">
+                <span class="lead">Phone: {{post.store.phone.phone}}</span>
+                <span class="lead">Email: {{post.store.email}}</span>
             </div>
         </div>
     </div>
@@ -101,4 +109,25 @@ export default {
 </script>
 
 <style scoped>
+    .post_name{
+        font-size: 1.714rem;
+        font-weight: bold;
+        color: #000;
+    }
+    .post_price{
+        font-size: 1.714rem;
+        color: #FF4858;
+    }
+    .post_discount{
+        font-size: 1.4rem;
+        color: #777;
+        text-decoration: line-through;
+    }
+    .bold{
+        font-size: 1.4rem;
+    }
+    .lighter{
+        font-weight: lighter;
+        font-size: 1.1rem;
+    }
 </style>

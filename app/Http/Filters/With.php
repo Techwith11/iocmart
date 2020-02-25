@@ -8,7 +8,6 @@ class With extends Base
 {
 	protected function applyFilter($builder)
 	{
-	    $relations = $this->verifyRequestFields(request($this->name()));
-		return $builder->with(...$relations);
+	    return $builder->with(request($this->name()));
 	}
 }

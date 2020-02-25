@@ -6,7 +6,6 @@ class GroupBy extends Base
 {
 	protected function applyFilter($builder)
 	{
-		$column = $this->verifyRequestField(request($this->name()));
-		return $builder->groupBy($column);
+		return $builder->groupBy(request($this->name()));
 	}
 }

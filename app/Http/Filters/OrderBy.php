@@ -6,7 +6,6 @@ class OrderBy extends Base
 {
 	protected function applyFilter($builder)
 	{
-		$column = $this->verifyRequestField(request($this->name()));
-		return $builder->orderBy($column, request()->has('order') ? request('order') : 'asc');
+		return $builder->orderBy(request($this->name()), request()->has('order') ? request('order') : 'asc');
 	}
 }
