@@ -51,58 +51,58 @@
 </template>
 
 <script>
-	import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex'
 
-    export default {
-		name: "ProductsList",
-		data(){
-			return {
-				posts: {}
-			}
-		},
-		methods: {
-			...mapActions(['addToCart', 'removeFromCart', 'setIntended']),
-			loadPosts(){
-				let page = this.$route.query.tab ? this.$route.query.tab : 1;
-				this.$Progress.start();
-                axios.get(this.getRoutes.posts.list + page).then((response)=>{
-					this.posts = response.data;
-					$("body").get(0).scrollIntoView();
-					this.$Progress.finish();
-                }).catch(()=>{
-					this.$Progress.fail();
-                    new toast({ type: 'error', title: "Error fetching posts" });
-                })
-            },
-            paginatePosts(page = 1) {
-				this.$router.push('/products?tab=' + page);
-				this.loadPosts();
-			},
-			getFeaturedImage(post){
-				return post.pictures.length > 0 ? post.pictures[0].uri : '/images/post-sample.png'
-			},
-			alterInCart(id){
-				if(!this.isLoggedIn){
-					this.setIntended(this.$route.fullPath);
-					this.$router.push('/login');
-					return new toast({ type: 'warning', title: "Login to continue"});
-				}
-				var post = this.posts.data.find(post => post.id === id);
-				if(post.is_ordered_by){
-					this.removeFromCart(id).then(() => post.is_ordered_by = false);
-				}else{
-					this.addToCart({post_id: id}).then(() => post.is_ordered_by = true);
-				}
-			}
-		},
-		computed: {
-			...mapGetters(['getRoutes', 'isLoggedIn','getSymbol']),
-			noPosts(){return this.posts.data ? this.posts.data.length < 1 : false}
-		},
-		mounted(){
-			this.loadPosts();
+export default {
+	name: 'ProductsList',
+	data(){
+		return {
+			posts: {}
 		}
-    }
+	},
+	methods: {
+		...mapActions(['addToCart', 'removeFromCart', 'setIntended']),
+		loadPosts(){
+			let page = this.$route.query.tab ? this.$route.query.tab : 1
+			this.$Progress.start()
+			axios.get(this.getRoutes.posts.list + page).then((response)=>{
+				this.posts = response.data
+				$('body').get(0).scrollIntoView()
+				this.$Progress.finish()
+			}).catch(()=>{
+				this.$Progress.fail()
+				new toast({ type: 'error', title: 'Error fetching posts' })
+			})
+		},
+		paginatePosts(page = 1) {
+			this.$router.push('/products?tab=' + page)
+			this.loadPosts()
+		},
+		getFeaturedImage(post){
+			return post.pictures.length > 0 ? post.pictures[0].uri : '/images/post-sample.png'
+		},
+		alterInCart(id){
+			if(!this.isLoggedIn){
+				this.setIntended(this.$route.fullPath)
+				this.$router.push('/login')
+				return new toast({ type: 'warning', title: 'Login to continue'})
+			}
+			var post = this.posts.data.find(post => post.id === id)
+			if(post.is_ordered_by){
+				this.removeFromCart(id).then(() => post.is_ordered_by = false)
+			}else{
+				this.addToCart({post_id: id}).then(() => post.is_ordered_by = true)
+			}
+		}
+	},
+	computed: {
+		...mapGetters(['getRoutes', 'isLoggedIn','getSymbol']),
+		noPosts(){return this.posts.data ? this.posts.data.length < 1 : false}
+	},
+	mounted(){
+		this.loadPosts()
+	}
+}
 </script>
 
 <style scoped>

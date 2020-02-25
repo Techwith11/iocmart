@@ -71,65 +71,65 @@
 </template>
 
 <script>
-    import { mapGetters } from "vuex";
-    export default{
-        name: "ProductForm",
-        data: () => ({
-            form: new Form({
-                name: "",
-                price: null,
-                description: "",
-                discount: 0,
-                quantity: 1,
-                category_id: null
-            }),
-            categories: [],
-            submitted:false,
-            disabled:false,
-        }),
-        methods: {
-            addPost(){
-                this.disabled = true;
-                this.submitted = true;
-                this.$Progress.start();
-                this.form.post(this.getRoutes.posts.base).then(response=>{
-                    this.disabled = false;
-                    this.$Progress.finish();
-                    new toast({
-						type: 'success',
-						title: 'Product created successfully!',
-                    });
-                    this.$router.push("/products/" + response.data.data.id);
-                }).catch(()=>{
-                    this.disabled = false;
-					this.$Progress.fail();
-					new toast({
-						type: 'error',
-						title: 'Error creating product!',
-					});
-                });
-            },
-            fetchCategories(){
-                axios.get(this.getRoutes.categories.parents).then(response=>{
-                    this.categories = response.data;
-                }).catch(()=>{
-                    new toast({
-						type: 'error',
-						title: 'Error fetching categories',
-					});
-                })
-            }
-        },
-        computed: {
-            ...mapGetters(["getRoutes"]),
-            isDisabled(){return this.disabled},
-            isSubmitted(){return this.submitted},
-            isEmpty(){ return !(this.form.name && this.form.price && this.form.discount && this.form.quantity) }
-        },
-        mounted(){
-            this.fetchCategories();
-        }
-    }
+import { mapGetters } from 'vuex'
+export default{
+	name: 'ProductForm',
+	data: () => ({
+		form: new Form({
+			name: '',
+			price: null,
+			description: '',
+			discount: 0,
+			quantity: 1,
+			category_id: null
+		}),
+		categories: [],
+		submitted:false,
+		disabled:false,
+	}),
+	methods: {
+		addPost(){
+			this.disabled = true
+			this.submitted = true
+			this.$Progress.start()
+			this.form.post(this.getRoutes.posts.base).then(response=>{
+				this.disabled = false
+				this.$Progress.finish()
+				new toast({
+					type: 'success',
+					title: 'Product created successfully!',
+				})
+				this.$router.push('/products/' + response.data.data.id)
+			}).catch(()=>{
+				this.disabled = false
+				this.$Progress.fail()
+				new toast({
+					type: 'error',
+					title: 'Error creating product!',
+				})
+			})
+		},
+		fetchCategories(){
+			axios.get(this.getRoutes.categories.parents).then(response=>{
+				this.categories = response.data
+			}).catch(()=>{
+				new toast({
+					type: 'error',
+					title: 'Error fetching categories',
+				})
+			})
+		}
+	},
+	computed: {
+		...mapGetters(['getRoutes']),
+		isDisabled(){return this.disabled},
+		isSubmitted(){return this.submitted},
+		isEmpty(){ return !(this.form.name && this.form.price && this.form.discount && this.form.quantity) }
+	},
+	mounted(){
+		this.fetchCategories()
+	}
+}
 </script>
 
 <style scoped>

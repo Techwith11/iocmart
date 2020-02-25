@@ -55,47 +55,47 @@
 </template>
 
 <script>
-    import { mapGetters } from "vuex";
-    export default{
-        name: "StoreForm",
-        data: () => ({
-            form: new Form({
-                name: "",
-                email: "",
-                phone: {
-                    phone: "",
-                    phone_country: "NG"
-                },
-                link: "",
-                description: ""
-            }),
-            submitted:false,
-            disabled:false,
-        }),
-        methods: {
-            createStore(){
-                this.disabled = true;
-                this.submitted = true;
-                this.$Progress.start();
-                this.form.post(this.getRoutes.stores.base).then(response=>{
-                    this.disabled = false;
-                    this.$Progress.finish();
-                    new toast({ type: 'success', title: 'Store created successfully!' });
-                    this.$router.push("/store/" + response.data.data.id);
-                }).catch(()=>{
-                    this.disabled = false;
-					this.$Progress.fail();
-					new toast({ type: 'error', title: 'Error creating store!' });
-                });
-            }
-        },
-        computed: {
-            ...mapGetters(["getRoutes"]),
-            isDisabled(){return this.disabled},
-            isSubmitted(){return this.submitted},
-            isEmpty(){ return !(this.form.name && this.form.email && this.form.phone.phone && this.form.link && this.form.description) }
-        }
-    }
+import { mapGetters } from 'vuex'
+export default{
+	name: 'StoreForm',
+	data: () => ({
+		form: new Form({
+			name: '',
+			email: '',
+			phone: {
+				phone: '',
+				phone_country: 'NG'
+			},
+			link: '',
+			description: ''
+		}),
+		submitted:false,
+		disabled:false,
+	}),
+	methods: {
+		createStore(){
+			this.disabled = true
+			this.submitted = true
+			this.$Progress.start()
+			this.form.post(this.getRoutes.stores.base).then(response=>{
+				this.disabled = false
+				this.$Progress.finish()
+				new toast({ type: 'success', title: 'Store created successfully!' })
+				this.$router.push('/store/' + response.data.data.id)
+			}).catch(()=>{
+				this.disabled = false
+				this.$Progress.fail()
+				new toast({ type: 'error', title: 'Error creating store!' })
+			})
+		}
+	},
+	computed: {
+		...mapGetters(['getRoutes']),
+		isDisabled(){return this.disabled},
+		isSubmitted(){return this.submitted},
+		isEmpty(){ return !(this.form.name && this.form.email && this.form.phone.phone && this.form.link && this.form.description) }
+	}
+}
 </script>
 
 <style scoped>

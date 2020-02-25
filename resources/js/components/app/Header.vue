@@ -3,10 +3,10 @@
 		<div class="container d-flex flex-row justify-content-between mt-1" id="topbar">
 			<div class="d-flex flex-row">
 				<select>
-					<option v-for="language in getLanguages">{{ language }}</option>
+					<option v-for="language in getLanguages" :key='language'>{{ language }}</option>
 				</select>
 				<select>
-					<option v-for="currency in getCurrencies">{{ currency }}</option>
+					<option v-for="currency in getCurrencies" :key='currency'>{{ currency }}</option>
 				</select>
 			</div>
 			<div class="d-flex flex-row">
@@ -72,35 +72,35 @@
 </template>
 
 <script>
-	import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex'
 
-	export default {
-		name: "Header",
-		computed: {
-			...mapGetters(['isLoggedIn','getCartCount','getCartPrice','getLanguages','getCurrencies']),
-		},
-		methods: {
-			...mapActions(['logout']),
-			logoutUser(){
-				new swal({
-                    title: 'Are you sure you want to logout?',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes',
-                }).then((result) => {
-                    if (result.value) {
-						this.$Progress.start();
-                        this.logout();
-						this.$router.push("/login");
-						this.$Progress.finish();
-						new toast({ type: 'success', title: 'Logged out successfuly' });
-                    }
-                })
-			}
+export default {
+	name: 'Header',
+	computed: {
+		...mapGetters(['isLoggedIn','getCartCount','getCartPrice','getLanguages','getCurrencies']),
+	},
+	methods: {
+		...mapActions(['logout']),
+		logoutUser(){
+			new swal({
+				title: 'Are you sure you want to logout?',
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes',
+			}).then((result) => {
+				if (result.value) {
+					this.$Progress.start()
+					this.logout()
+					this.$router.push('/login')
+					this.$Progress.finish()
+					new toast({ type: 'success', title: 'Logged out successfuly' })
+				}
+			})
 		}
 	}
+}
 </script>
 
 <style scoped>

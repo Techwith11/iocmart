@@ -5,12 +5,12 @@
 </template>
 
 <script>
-	import NotFound from "@/components/errors/NotFound";
+import NotFound from '@/components/errors/NotFound'
 
-	export default {
-		name: "NotFound",
-		components: {
-			"not-found": NotFound
-		}
+export default {
+	name: 'NotFound',
+	components: {
+		'not-found': NotFound
 	}
+}
 </script>

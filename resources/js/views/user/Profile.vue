@@ -5,13 +5,13 @@
 </template>
 
 <script>
-	import Profile from "@/components/profile/profile";
-	export default {
-		name: "Profile",
-		components: {
-			"profile": Profile
-		}
+import Profile from '@/components/profile/profile'
+export default {
+	name: 'Profile',
+	components: {
+		'profile': Profile
 	}
+}
 </script>
 
 <style scoped>

@@ -60,50 +60,50 @@
 </template>
 
 <script>
-    import { mapActions, mapGetters } from "vuex";
-    export default{
-        name: "RegisterForm",
-        data: () => ({
-            form: new Form({
-                name: "",
-                email: "",
-                phone: {
-                    phone: "",
-                    phone_country: "NG"
-                },
-                password: "",
-                password_confirmation: ""
-            }),
-            submitted:false,
-            disabled:false,
-        }),
-        methods: {
-            ...mapActions(["setAuth","clearIntended"]),
-            regUser(){
-                this.disabled = true;
-                this.submitted = true;
-                this.$Progress.start();
-                this.form.post(this.getRoutes.auth.register).then(response=>{
-                    this.setAuth({ data: response.data.data, remember: true });
-                    this.disabled = false;
-                    this.$Progress.finish();
-                    this.$router.push(this.getIntended);
-                    new toast({ type: 'success', title: 'Profile created successfully' });
-                    this.clearIntended();
-                }).catch(()=>{
-                    this.disabled = false;
-					this.$Progress.fail();
-					new toast({ type: 'error', title: 'Error creating user' });
-                });
-            },
-        },
-        computed: {
-            ...mapGetters(["getRoutes","getIntended"]),
-            isDisabled(){return this.disabled},
-            isSubmitted(){return this.submitted},
-            isEmpty(){ return !(this.form.name && this.form.email && this.form.phone.phone && this.form.password && this.form.password_confirmation) }
-        }
-    }
+import { mapActions, mapGetters } from 'vuex'
+export default{
+	name: 'RegisterForm',
+	data: () => ({
+		form: new Form({
+			name: '',
+			email: '',
+			phone: {
+				phone: '',
+				phone_country: 'NG'
+			},
+			password: '',
+			password_confirmation: ''
+		}),
+		submitted:false,
+		disabled:false,
+	}),
+	methods: {
+		...mapActions(['setAuth','clearIntended']),
+		regUser(){
+			this.disabled = true
+			this.submitted = true
+			this.$Progress.start()
+			this.form.post(this.getRoutes.auth.register).then(response=>{
+				this.setAuth({ data: response.data.data, remember: true })
+				this.disabled = false
+				this.$Progress.finish()
+				this.$router.push(this.getIntended)
+				new toast({ type: 'success', title: 'Profile created successfully' })
+				this.clearIntended()
+			}).catch(()=>{
+				this.disabled = false
+				this.$Progress.fail()
+				new toast({ type: 'error', title: 'Error creating user' })
+			})
+		},
+	},
+	computed: {
+		...mapGetters(['getRoutes','getIntended']),
+		isDisabled(){return this.disabled},
+		isSubmitted(){return this.submitted},
+		isEmpty(){ return !(this.form.name && this.form.email && this.form.phone.phone && this.form.password && this.form.password_confirmation) }
+	}
+}
 
 </script>
 

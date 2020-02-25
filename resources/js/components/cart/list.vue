@@ -42,28 +42,28 @@
 </template>
 
 <script>
-	import { mapActions,mapGetters } from 'vuex';
+import { mapActions,mapGetters } from 'vuex'
 
-	export default {
-		name: "Cart",
-		data:()=>({
-			voucherCode: '',
-			voucherPrice: 0,
-		}),
-		computed: {
-			...mapGetters(['getCart','getCartPrice']),
-			getTotal(){ return this.getCartPrice + this.voucherPrice },
-			hasOrders(){ return this.getCart.orders.length > 0}
-		},
-		methods: {
-			...mapActions(['increaseQuantity','reduceQuantity','deleteOrder','checkoutCart']),
-			useVoucher(){
-				let voucher = this.voucherCode
-				this.voucherCode = ''
-				new toast({type: 'error', title: 'Invalid voucher code'})
-			}
+export default {
+	name: 'Cart',
+	data:()=>({
+		voucherCode: '',
+		voucherPrice: 0,
+	}),
+	computed: {
+		...mapGetters(['getCart','getCartPrice']),
+		getTotal(){ return this.getCartPrice + this.voucherPrice },
+		hasOrders(){ return this.getCart.orders.length > 0}
+	},
+	methods: {
+		...mapActions(['increaseQuantity','reduceQuantity','deleteOrder','checkoutCart']),
+		useVoucher(){
+			let voucher = this.voucherCode
+			this.voucherCode = ''
+			new toast({type: 'error', title: 'Invalid voucher code'})
 		}
 	}
+}
 </script>
 
 <style scoped>

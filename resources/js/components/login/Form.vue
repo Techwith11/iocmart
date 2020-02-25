@@ -44,42 +44,42 @@
 </template>
 
 <script>
-    import { mapActions, mapGetters } from "vuex";
-    export default{
-        name: "LoginForm",
-        data: () => ({
-            form: new Form({ email: "", password: "" }),
-            rememberMe: true,
-            submitted:false,
-            disabled:false,
-        }),
-        methods: {
-            ...mapActions(["setAuth","clearIntended"]),
-            loginUser(){
-                this.disabled = true;
-                this.submitted = true;
-                this.$Progress.start();
-                this.form.post(this.getRoutes.auth.login).then(response=>{
-                    this.setAuth({ data: response.data.data, remember: this.rememberMe });
-                    this.disabled = false;
-                    this.$Progress.finish();
-                    this.$router.push(this.getIntended);
-                    new toast({ type: 'success', title: 'Logged In successfully' });
-                    this.clearIntended();
-                }).catch(()=>{
-                    this.disabled = false;
-					this.$Progress.fail();
-					new toast({ type: 'error', title: 'Error logging in user' });
-                });
-            },
-        },
-        computed: {
-            ...mapGetters(["getRoutes","getIntended"]),
-            isDisabled(){return this.disabled},
-            isSubmitted(){return this.submitted},
-            isEmpty(){ return !(this.form.email && this.form.password) }
-        }
-    }
+import { mapActions, mapGetters } from 'vuex'
+export default{
+	name: 'LoginForm',
+	data: () => ({
+		form: new Form({ email: '', password: '' }),
+		rememberMe: true,
+		submitted:false,
+		disabled:false,
+	}),
+	methods: {
+		...mapActions(['setAuth','clearIntended']),
+		loginUser(){
+			this.disabled = true
+			this.submitted = true
+			this.$Progress.start()
+			this.form.post(this.getRoutes.auth.login).then(response=>{
+				this.setAuth({ data: response.data.data, remember: this.rememberMe })
+				this.disabled = false
+				this.$Progress.finish()
+				this.$router.push(this.getIntended)
+				new toast({ type: 'success', title: 'Logged In successfully' })
+				this.clearIntended()
+			}).catch(()=>{
+				this.disabled = false
+				this.$Progress.fail()
+				new toast({ type: 'error', title: 'Error logging in user' })
+			})
+		},
+	},
+	computed: {
+		...mapGetters(['getRoutes','getIntended']),
+		isDisabled(){return this.disabled},
+		isSubmitted(){return this.submitted},
+		isEmpty(){ return !(this.form.email && this.form.password) }
+	}
+}
 
 </script>
 

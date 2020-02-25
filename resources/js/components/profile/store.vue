@@ -5,16 +5,16 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
-	export default {
-		name: "Store",
-		computed: {
-			...mapGetters(["getStore"]),
-		},
-		components: {
-		}
+export default {
+	name: 'Store',
+	computed: {
+		...mapGetters(['getStore']),
+	},
+	components: {
 	}
+}
 </script>
 
 <style scoped>

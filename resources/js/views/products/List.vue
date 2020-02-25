@@ -11,18 +11,18 @@
 </template>
 
 <script>
-    import SideBar from "@/components/products/SideBar";
-    import CTA from "@/components/products/CTA";
-    import List from "@/components/products/List";
+import SideBar from '@/components/products/SideBar'
+import CTA from '@/components/products/CTA'
+import List from '@/components/products/List'
 
-    export default {
-        name: "ProductsList",
-        components: {
-            "side-bar": SideBar,
-            "cta": CTA,
-            "list": List
-        }
-    }
+export default {
+	name: 'ProductsList',
+	components: {
+		'side-bar': SideBar,
+		'cta': CTA,
+		'list': List
+	}
+}
 
 </script>
 

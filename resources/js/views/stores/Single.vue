@@ -5,14 +5,14 @@
 </template>
 
 <script>
-    import Single from "@/components/stores/Single";
+import Single from '@/components/stores/Single'
 
-    export default {
-        name: "StoreSingle",
-        components: {
-            "single": Single
-        }
-    }
+export default {
+	name: 'StoreSingle',
+	components: {
+		'single': Single
+	}
+}
 
 </script>
 

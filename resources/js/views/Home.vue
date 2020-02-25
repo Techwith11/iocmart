@@ -14,23 +14,23 @@
 </template>
 
 <script>
-	import Hero from "@/components/home/Hero";
-	import Banners from "@/components/home/Banners";
-	import BestSellers from "@/components/home/BestSellers";
-	import CTA from "@/components/home/CTA";
-	import Search from "@/components/home/Search";
-	import WhyUseUs from "@/components/home/WhyUseUs";
-	export default {
-		name: "Home",
-		components: {
-			"hero": Hero,
-			"banners": Banners,
-			"best-sellers": BestSellers,
-			"cta": CTA,
-			"search": Search,
-			"why-use-us": WhyUseUs,
-		}
+import Hero from '@/components/home/Hero'
+import Banners from '@/components/home/Banners'
+import BestSellers from '@/components/home/BestSellers'
+import CTA from '@/components/home/CTA'
+import Search from '@/components/home/Search'
+import WhyUseUs from '@/components/home/WhyUseUs'
+export default {
+	name: 'Home',
+	components: {
+		'hero': Hero,
+		'banners': Banners,
+		'best-sellers': BestSellers,
+		'cta': CTA,
+		'search': Search,
+		'why-use-us': WhyUseUs,
 	}
+}
 </script>
 
 <style scoped>

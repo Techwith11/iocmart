@@ -37,7 +37,7 @@ const actions = {
 		window.axios.defaults.headers.common['Authorization'] = undefined
 		commit('clearAuth')
 	},
-	addToCart({ getters, commit }, {post_id, quantity}) {
+	addToCart({ getters, commit }, { post_id, quantity }) {
 		console.log(quantity)
 		return window.axios
 			.post(getters.getRoutes.orders.base, { post_id, quantity: quantity ? quantity : 1 })
@@ -82,15 +82,14 @@ const actions = {
 			.then(() => commit('removeFromCart', id))
 			.catch(() => new window.toast({ type: 'error', title: 'Error deleting order' }))
 	},
-	checkoutCart({ getters, commit}){
-		return window.axios.post(getters.getRoutes.carts.checkout + getters.getCart.id)
+	checkoutCart({ getters, commit }) {
+		return window.axios
+			.post(getters.getRoutes.carts.checkout + getters.getCart.id)
 			.then(res => {
-				commit('setCart',res.data.data)
-				new toast({ type: 'success', title:'Checked out successfully'})
+				commit('setCart', res.data.data)
+				new toast({ type: 'success', title: 'Checked out successfully' })
 			})
-			.catch(err => {
-				new toast({ type: 'error', title:'Error checking out'})
-			})
+			.catch(() => new toast({ type: 'error', title: 'Error checking out' }))
 	}
 }
 

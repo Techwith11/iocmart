@@ -5,13 +5,13 @@
 </template>
 
 <script>
-	import Store from "@/components/profile/store";
-	export default {
-		name: "Store",
-		components: {
-			"store": Store
-		}
+import Store from '@/components/profile/store'
+export default {
+	name: 'Store',
+	components: {
+		'store': Store
 	}
+}
 </script>
 
 <style scoped>

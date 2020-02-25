@@ -3,14 +3,14 @@
 </template>
 
 <script>
-    import RegisterForm from "@/components/register/Form"
+import RegisterForm from '@/components/register/Form'
 
-    export default {
-        name: "Register",
-        components: {
-            "register": RegisterForm
-        }
-    }
+export default {
+	name: 'Register',
+	components: {
+		'register': RegisterForm
+	}
+}
 
 </script>
 

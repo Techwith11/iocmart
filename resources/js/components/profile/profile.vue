@@ -5,16 +5,16 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
-	export default {
-		name: "Profile",
-		computed: {
-			...mapGetters(["getAuth"]),
-		},
-		components: {
-		}
+export default {
+	name: 'Profile',
+	computed: {
+		...mapGetters(['getAuth']),
+	},
+	components: {
 	}
+}
 </script>
 
 <style scoped>

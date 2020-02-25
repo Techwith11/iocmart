@@ -5,14 +5,14 @@
 </template>
 
 <script>
-    import New from '@/components/products/New'
+import New from '@/components/products/New'
 
-    export default {
-        name: "ProductNew",
-        components: {
-            "new": New
-        }
-    }
+export default {
+	name: 'ProductNew',
+	components: {
+		'new': New
+	}
+}
 
 </script>
 

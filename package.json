@@ -4,7 +4,7 @@
         "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run dev -- --watch",
         "prod": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "lint": "eslint resources/js/ --fix"
+        "lint": "eslint resources/js/ --fix --ext .js,.vue"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.9.0",

@@ -3,14 +3,14 @@
 </template>
 
 <script>
-    import LoginForm from "@/components/login/Form"
+import LoginForm from '@/components/login/Form'
 
-    export default {
-        name: "Login",
-        components: {
-            "login": LoginForm
-        }
-    }
+export default {
+	name: 'Login',
+	components: {
+		'login': LoginForm
+	}
+}
 
 </script>
 
