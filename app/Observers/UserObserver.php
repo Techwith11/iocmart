@@ -11,7 +11,7 @@ class UserObserver
     public function created(User $user): void
     {
 		event(new NewUserRegisteredEvent($user));
-    	$user->passport_token = $user->createToken(env('TOKEN_KEY'))->accessToken;
+        $user->passport_token = $user->createToken(env('TOKEN_KEY'))->accessToken;
         $user->save();
     }
 

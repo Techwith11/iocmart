@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use Illuminate\Support\Facades\Storage;
 use App\Picture;
+use Illuminate\Support\Facades\Storage;
 
 class PictureObserver
 {

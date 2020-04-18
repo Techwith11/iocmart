@@ -2,9 +2,10 @@
 
 namespace App\Listeners;
 
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
 use App\Events\NewSingleImageUploadedEvent;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Str;
+use Intervention\Image\Facades\Image;
 
 class HandleMultipleImagesListener
 {
@@ -12,7 +13,7 @@ class HandleMultipleImagesListener
     {
 		$event->params['images']->each(static function($image) use ($event) {
 			$object = $event->params['object'];
-            $type = $event->params['type'];
+            $type = Str::plural(Str::lower(class_basename($object)));
             $path = 'images/'.$type.'/';
 			$name = time().'_'.$image->getClientOriginalName();
 			Storage::disk(env('APP_ENV') === 'production' ? 's3' : 'public')->put(

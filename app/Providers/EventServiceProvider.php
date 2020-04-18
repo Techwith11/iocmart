@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Events\NewMultipleImagesUploadedEvent;
-use App\Events\NewSingleImageUploadedEvent;
 use App\Events\NewOrChangedEmailEvent;
+use App\Events\NewSingleImageUploadedEvent;
 use App\Events\NewUserRegisteredEvent;
 use App\Listeners\HandleMultipleImagesListener;
 use App\Listeners\HandleSingleImageListener;

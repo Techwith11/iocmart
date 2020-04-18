@@ -2,11 +2,11 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Model;
-use App\Observers\PictureObserver;
 use App\Http\Filters\RegisterFilters;
+use App\Observers\PictureObserver;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Facades\Storage;
 
 class Picture extends Model
 {

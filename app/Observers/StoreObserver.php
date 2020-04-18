@@ -25,7 +25,7 @@ class StoreObserver
         foreach ($store->posts as $post) {
             $post->delete();
         }
-        
+
         if($store->picture){
             $store->picture->delete();
         }

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use App\Order;
-use App\Http\Resources\v1\CartsResource;
-use App\Http\Requests\v1\CartUpdateRequest;
-use App\Http\Requests\v1\CartCreateRequest;
-use App\Http\Controllers\Controller;
 use App\Cart;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\v1\CartCreateRequest;
+use App\Http\Requests\v1\CartUpdateRequest;
+use App\Http\Resources\v1\CartsResource;
+use App\Order;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CartsController extends Controller
 {

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Events\NewMultipleImagesUploadedEvent;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\PostCreateRequest;
 use App\Http\Requests\v1\PostUpdateRequest;
-use App\Post;
 use App\Http\Resources\v1\PostsResource;
-use App\Http\Controllers\Controller;
-use Illuminate\Pipeline\Pipeline;
+use App\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Pipeline\Pipeline;
 
 class PostsController extends Controller
 {
@@ -35,8 +35,7 @@ class PostsController extends Controller
 		if($request->images){
 			$params = [
 				'images' => $request->images,
-				'object' => $post,
-				'type' => 'posts'
+				'object' => $post
 			];
 			event(new NewMultipleImagesUploadedEvent($params));
         }
@@ -56,8 +55,7 @@ class PostsController extends Controller
 		if($request->images){
 			$params = [
 				'images' => $request->images,
-				'object' => $post,
-				'path' => 'images/posts/'
+				'object' => $post
 			];
 			event(new NewMultipleImagesUploadedEvent($params));
 		}

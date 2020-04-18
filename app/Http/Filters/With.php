@@ -2,8 +2,6 @@
 
 namespace App\Http\Filters;
 
-use Illuminate\Support\Str;
-
 class With extends Base
 {
 	protected function applyFilter($builder)

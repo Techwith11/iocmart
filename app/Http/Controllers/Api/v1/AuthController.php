@@ -4,10 +4,10 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Events\NewSingleImageUploadedEvent;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\v1\UserPasswordUpdateRequest;
-use App\Http\Resources\v1\ProfileResource;
 use App\Http\Requests\v1\UserCreateRequest;
 use App\Http\Requests\v1\UserLoginRequest;
+use App\Http\Requests\v1\UserPasswordUpdateRequest;
+use App\Http\Resources\v1\ProfileResource;
 use App\User;
 use Illuminate\Http\File;
 use Illuminate\Http\JsonResponse;

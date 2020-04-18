@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Events\NewSingleImageUploadedEvent;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\ImageUploadRequest;
 use App\Http\Requests\v1\StoreCreateRequest;
 use App\Http\Requests\v1\StoreUpdateRequest;
@@ -10,7 +11,6 @@ use App\Http\Resources\v1\PostsResource;
 use App\Http\Resources\v1\StoresResource;
 use App\Post;
 use App\Store;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -48,8 +48,7 @@ class StoresController extends Controller
 		$this->authorize('update', $store);
 		$params = [
 			'image' => $request->image,
-			'object' => $store,
-			'type' => 'stores'
+			'object' => $store
 		];
 		event(new NewSingleImageUploadedEvent($params));
 		return response()->json(['data' => 'true']);

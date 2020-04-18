@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Events\NewSingleImageUploadedEvent;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\ImageUploadRequest;
 use App\Http\Requests\v1\UserCreateRequest;
 use App\Http\Requests\v1\UserUpdateRequest;
-use App\User;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\UsersResource;
+use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Hash;
@@ -42,8 +42,7 @@ class UsersController extends Controller
 		$this->authorize('update', $user);
 		$params = [
 			'image' => $request->image,
-			'object' => $user,
-			'type' => 'users'
+			'object' => $user
 		];
 		event(new NewSingleImageUploadedEvent($params));
 		return response()->json(['data' => 'true']);

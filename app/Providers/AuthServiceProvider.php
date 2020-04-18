@@ -12,12 +12,12 @@ use App\Policies\OrderPolicy;
 use App\Policies\PicturePolicy;
 use App\Policies\PostPolicy;
 use App\Policies\StorePolicy;
+use App\Policies\UserPolicy;
 use App\Post;
 use App\Store;
-use Laravel\Passport\Passport;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\User;
-use App\Policies\UserPolicy;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
